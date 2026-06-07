@@ -716,8 +716,15 @@ async function init() {
     await loadAllWebsiteData();
     initSliderControls();
 
-    // Polling setiap 60 detik (sama seperti sebelumnya)
-    setInterval(loadAllWebsiteData, 60000);
+    // TAMBAHKAN LOGIKA REALTIME DI SINI
+    // Ini akan otomatis menjalankan loadAllWebsiteData() setiap ada perubahan di database
+    supabase
+      .channel('schema-db-changes')
+      .on('postgres_changes', { event: '*', schema: 'public' }, (payload) => {
+        console.log('Update terdeteksi, memperbarui data...', payload);
+        loadAllWebsiteData();
+      })
+      .subscribe();
 }
 document.addEventListener('DOMContentLoaded', init);
 </script>
