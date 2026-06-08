@@ -8,11 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <style>
-       /* ========================================
-   RINJANI4D — TEMA TERANG KREM-EMAS
-   Sesuai referensi gambar
-   ======================================== */
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -23,18 +18,10 @@ body {
     background-color: #f9f7e8;
 }
 
-/* HAPUS background gelap — ganti solid krem */
-body::before {
-    content: none;
-}
+body::before { content: none; }
+.bg-overlay { display: none; }
 
-.bg-overlay {
-    display: none;
-}
-
-/* ══════════════════════════════════════════
-   HEADER — putih bersih dengan border emas
-══════════════════════════════════════════ */
+/* HEADER */
 header {
     display: flex;
     justify-content: space-between;
@@ -56,7 +43,6 @@ header {
     margin: 5px 0; background: #ffd700; border-radius: 2px;
 }
 
-/* DROPDOWN — putih dengan aksen emas */
 .dropdown-card {
     display: none;
     position: absolute;
@@ -81,9 +67,7 @@ header {
 .dropdown-card a:last-child { border-bottom: none; }
 .dropdown-card a:hover { background: #ffd700; color: #000; }
 
-/* ══════════════════════════════════════════
-   NAVBAR HORIZONTAL — putih, border emas
-══════════════════════════════════════════ */
+/* NAVBAR HORIZONTAL */
 .navbar-horizontal {
     background: #ffffff;
     border-bottom: 2px solid #ffd700;
@@ -100,10 +84,6 @@ header {
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 .navbar-horizontal::-webkit-scrollbar { display: none; }
-.navbar-horizontal a {
-    white-space: nowrap;
-    padding: 5px 10px;
-}
 
 .nav-tab {
     flex-shrink: 0;
@@ -122,19 +102,10 @@ header {
     margin-bottom: -2px;
     white-space: nowrap;
 }
-.nav-tab:hover {
-    color: #b8860b;
-    background: rgba(255,215,0,0.08);
-}
-.nav-tab.active {
-    color: #b8860b;
-    border-bottom-color: #ffd700;
-    background: rgba(255,215,0,0.10);
-}
+.nav-tab:hover { color: #b8860b; background: rgba(255,215,0,0.08); }
+.nav-tab.active { color: #b8860b; border-bottom-color: #ffd700; background: rgba(255,215,0,0.10); }
 
-/* ══════════════════════════════════════════
-   MARQUEE — merah tetap, teks putih
-══════════════════════════════════════════ */
+/* MARQUEE */
 .marquee-container {
     background: #b32e2e;
     height: 35px;
@@ -143,13 +114,9 @@ header {
     border-bottom: 2px solid #ffd700;
 }
 .marquee-content { width: 100%; }
-.marquee-content marquee {
-    font-weight: 600; font-size: 14px; color: #ffffff; display: block;
-}
+.marquee-content marquee { font-weight: 600; font-size: 14px; color: #ffffff; display: block; }
 
-/* ══════════════════════════════════════════
-   BANNER SLIDER — tetap full visual
-══════════════════════════════════════════ */
+/* BANNER SLIDER */
 .banner-slider {
     width: 100%;
     position: relative;
@@ -158,12 +125,7 @@ header {
     border-bottom: 2px solid #ffd700;
 }
 @media (max-width: 768px) { .banner-slider { aspect-ratio: 16 / 9; } }
-
-.slider-wrapper {
-    display: flex;
-    transition: transform 0.6s ease-in-out;
-    height: 100%;
-}
+.slider-wrapper { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
 .slide { min-width: 100%; height: 100%; }
 .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
@@ -176,9 +138,7 @@ header {
 .next-btn { right: 0; }
 .prev-btn { left: 0; }
 
-/* ══════════════════════════════════════════
-   TAB FILTER LIGA — outline emas di krem
-══════════════════════════════════════════ */
+/* TAB FILTER */
 .tab-filter {
     display: flex; gap: 10px;
     margin-bottom: 15px;
@@ -202,14 +162,8 @@ header {
 .tab-btn.active { background: #ffd700; color: #000000; }
 .tab-btn:hover { background: #fff9e0; }
 
-/* ══════════════════════════════════════════
-   SCHEDULE SECTION — putih bersih
-══════════════════════════════════════════ */
-.schedule-section {
-    padding: 25px 20px;
-    max-width: 1100px;
-    margin: auto;
-}
+/* SCHEDULE SECTION */
+.schedule-section { padding: 25px 20px; max-width: 1100px; margin: auto; }
 .section-title {
     font-weight: 800;
     color: #b8860b;
@@ -226,24 +180,11 @@ header {
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 table { width: 100%; border-collapse: collapse; min-width: 600px; }
-th {
-    background: rgba(255,215,0,0.15);
-    color: #b8860b;
-    padding: 15px;
-    text-align: left;
-    font-size: 13px;
-}
-td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    font-size: 14px;
-    color: #333333;
-}
+th { background: rgba(255,215,0,0.15); color: #b8860b; padding: 15px; text-align: left; font-size: 13px; }
+td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 14px; color: #333333; }
 tbody tr:hover { background: #fffbec; }
 
-/* ══════════════════════════════════════════
-   MATCH CARDS — putih dengan border emas
-══════════════════════════════════════════ */
+/* MATCH CARDS */
 .match-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -266,7 +207,6 @@ tbody tr:hover { background: #fffbec; }
     transform: translateY(-5px);
     box-shadow: 0 8px 24px rgba(255,215,0,0.2);
 }
-
 .teams { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
 .team { flex: 1; }
 .team p { color: #333333; font-weight: 700; font-size: 13px; margin-top: 5px; }
@@ -317,9 +257,7 @@ tbody tr:hover { background: #fffbec; }
 }
 .card-btn:hover { background: #e6c200; }
 
-/* ══════════════════════════════════════════
-   FLOATING BUTTON — tetap emas mencolok
-══════════════════════════════════════════ */
+/* FLOATING */
 .floating {
     position: fixed;
     bottom: 20px; right: 20px;
@@ -334,9 +272,7 @@ tbody tr:hover { background: #fffbec; }
 }
 .floating:hover { background: #e6c200; }
 
-/* ══════════════════════════════════════════
-   DOTS SLIDER
-══════════════════════════════════════════ */
+/* DOTS */
 .dots-container {
     position: absolute;
     bottom: 10px; left: 50%;
@@ -352,9 +288,7 @@ tbody tr:hover { background: #fffbec; }
 }
 .dot.active { background: #ffd700; width: 25px; border-radius: 10px; }
 
-/* ══════════════════════════════════════════
-   3D CAROUSEL
-══════════════════════════════════════════ */
+/* 3D CAROUSEL */
 .carousel-wrap { width: 100%; overflow: hidden; padding: 20px 0; }
 .scene {
     width: 160px; height: 230px;
@@ -378,20 +312,10 @@ tbody tr:hover { background: #fffbec; }
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transform: rotateY(calc(var(--i) * (360deg / var(--n)))) translateZ(350px);
 }
-@keyframes rotate {
-    from { transform: rotateY(0deg); }
-    to   { transform: rotateY(360deg); }
-}
+@keyframes rotate { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
-/* ══════════════════════════════════════════
-   LOADING / EMPTY STATE
-══════════════════════════════════════════ */
-.state-msg {
-    text-align: center;
-    padding: 30px;
-    color: #999999;
-    font-size: 14px;
-}
+/* LOADING */
+.state-msg { text-align: center; padding: 30px; color: #999999; font-size: 14px; }
 .loader-ring {
     display: inline-block;
     width: 20px; height: 20px;
@@ -404,9 +328,7 @@ tbody tr:hover { background: #fffbec; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ══════════════════════════════════════════
-   HALAMAN TAMBAHAN (extra pages)
-══════════════════════════════════════════ */
+/* EXTRA PAGES */
 #main-content { display: block; }
 
 .extra-page {
@@ -423,7 +345,31 @@ tbody tr:hover { background: #fffbec; }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Card halaman tambahan — putih bersih */
+/* Tombol kembali — pill button emas */
+.back-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid #ffd700;
+    border-radius: 20px;
+    padding: 8px 18px;
+    color: #b8860b;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.back-link:hover { background: #ffd700; color: #000000; }
+
+/* EP CARD */
 .ep-card {
     background: #ffffff;
     border: 1px solid rgba(255,215,0,0.4);
@@ -443,7 +389,7 @@ tbody tr:hover { background: #fffbec; }
     letter-spacing: 0.5px;
 }
 
-/* Statistik */
+/* STAT */
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -473,42 +419,14 @@ tbody tr:hover { background: #fffbec; }
     letter-spacing: 0.5px;
 }
 
-/* Progress bar */
-.prog-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 13px;
-}
-.prog-label {
-    width: 130px;
-    font-size: 13px;
-    font-weight: 600;
-    flex-shrink: 0;
-    color: #444444;
-}
-.prog-bar-wrap {
-    flex: 1;
-    background: rgba(0,0,0,0.07);
-    border-radius: 20px;
-    height: 10px;
-    overflow: hidden;
-}
-.prog-bar {
-    height: 100%;
-    border-radius: 20px;
-    background: linear-gradient(90deg, #ffd700, #ffaa00);
-}
-.prog-val {
-    width: 38px;
-    text-align: right;
-    font-size: 13px;
-    font-weight: 700;
-    color: #b8860b;
-    flex-shrink: 0;
-}
+/* PROGRESS BAR */
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
+.prog-label { width: 130px; font-size: 13px; font-weight: 600; flex-shrink: 0; color: #444444; }
+.prog-bar-wrap { flex: 1; background: rgba(0,0,0,0.07); border-radius: 20px; height: 10px; overflow: hidden; }
+.prog-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #ffd700, #ffaa00); }
+.prog-val { width: 38px; text-align: right; font-size: 13px; font-weight: 700; color: #b8860b; flex-shrink: 0; }
 
-/* Panduan steps */
+/* STEPS */
 .step-list { list-style: none; }
 .step-item {
     display: flex;
@@ -529,19 +447,10 @@ tbody tr:hover { background: #fffbec; }
     flex-shrink: 0;
     margin-top: 2px;
 }
-.step-content h4 {
-    font-weight: 700;
-    font-size: 15px;
-    color: #b8860b;
-    margin-bottom: 4px;
-}
-.step-content p {
-    font-size: 13px;
-    color: #666666;
-    line-height: 1.6;
-}
+.step-content h4 { font-weight: 700; font-size: 15px; color: #b8860b; margin-bottom: 4px; }
+.step-content p { font-size: 13px; color: #666666; line-height: 1.6; }
 
-/* Tentang — tim card */
+/* TEAM CARDS (Tentang Kami) */
 .team-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -563,20 +472,16 @@ tbody tr:hover { background: #fffbec; }
     font-size: 28px;
     margin: 0 auto 12px;
 }
-.tc-name {
-    font-weight: 700;
-    font-size: 15px;
-    color: #b8860b;
-    margin-bottom: 4px;
-}
-.tc-role {
-    font-size: 12px;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+.tc-name { font-weight: 700; font-size: 15px; color: #b8860b; margin-bottom: 4px; }
+.tc-role { font-size: 12px; color: #999999; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* FAQ accordion */
+/* VISI MISI */
+.vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.vm-box { background: #fffbec; border: 1px solid rgba(255,215,0,0.25); border-radius: 10px; padding: 16px; }
+.vm-box-title { color: #b8860b; font-weight: 800; margin-bottom: 8px; font-size: 15px; }
+.vm-box p { font-size: 13px; color: #666666; line-height: 1.7; }
+
+/* FAQ */
 .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
 .faq-q {
     width: 100%;
@@ -596,63 +501,12 @@ tbody tr:hover { background: #fffbec; }
     transition: color 0.2s;
 }
 .faq-q:hover, .faq-q.open { color: #b8860b; }
-.faq-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-    transition: transform 0.3s;
-    color: #ffd700;
-    line-height: 1;
-}
+.faq-icon { font-size: 20px; flex-shrink: 0; transition: transform 0.3s; color: #ffd700; line-height: 1; }
 .faq-q.open .faq-icon { transform: rotate(45deg); }
-.faq-a {
-    display: none;
-    padding: 0 0 16px;
-    font-size: 13px;
-    color: #666666;
-    line-height: 1.75;
-}
+.faq-a { display: none; padding: 0 0 16px; font-size: 13px; color: #666666; line-height: 1.75; }
 .faq-a.open { display: block; }
 
-/* Back link */
-.back-link {
-    display: inline-block;
-    margin-top: 10px;
-    color: #b8860b;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-.back-link:hover { opacity: 0.75; }
-
-/* Visi misi grid */
-.vm-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-.vm-box {
-    background: #fffbec;
-    border: 1px solid rgba(255,215,0,0.25);
-    border-radius: 10px;
-    padding: 16px;
-}
-.vm-box-title {
-    color: #b8860b;
-    font-weight: 800;
-    margin-bottom: 8px;
-    font-size: 15px;
-}
-.vm-box p {
-    font-size: 13px;
-    color: #666666;
-    line-height: 1.7;
-}
-
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
+/* RESPONSIVE */
 @media (max-width: 600px) {
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .team-cards-grid { grid-template-columns: 1fr 1fr; }
@@ -666,9 +520,7 @@ tbody tr:hover { background: #fffbec; }
 
 <div class="bg-overlay"></div>
 
-<!-- ══════════════════════════════════════════════════════
-     HEADER — Burger hanya: Login, Daftar, Profil
-══════════════════════════════════════════════════════ -->
+<!-- HEADER -->
 <header>
     <div class="logo">
         <img src="https://i.imgur.com/DuwlIfJ.png" alt="Logo RINJANI4D">
@@ -685,19 +537,15 @@ tbody tr:hover { background: #fffbec; }
     </div>
 </header>
 
-<!-- ══════════════════════════════════════════════════════
-     NAVBAR HORIZONTAL — Statistik, Panduan, Tentang, FAQ
-══════════════════════════════════════════════════════ -->
+<!-- NAVBAR HORIZONTAL -->
 <nav class="navbar-horizontal" id="navbarHorizontal">
     <button class="nav-tab" onclick="showExtraPage('statistik')">| Statistik |</button>
-    <button class="nav-tab" onclick="showExtraPage('panduan')"> | Panduan | </button>
-    <button class="nav-tab" onclick="showExtraPage('tentang')"> | Tentang Kami |</button>
-    <button class="nav-tab" onclick="showExtraPage('faq')"> | FAQ | </button>
+    <button class="nav-tab" onclick="showExtraPage('panduan')">| Panduan |</button>
+    <button class="nav-tab" onclick="showExtraPage('tentang')">| Tentang Kami |</button>
+    <button class="nav-tab" onclick="showExtraPage('faq')">| FAQ |</button>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════
-     MARQUEE
-══════════════════════════════════════════════════════ -->
+<!-- MARQUEE -->
 <div class="marquee-container" id="marqueeWrap">
     <div class="marquee-content">
         <marquee scrollamount="5" id="marqueeText">
@@ -706,9 +554,7 @@ tbody tr:hover { background: #fffbec; }
     </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     BANNER SLIDER
-══════════════════════════════════════════════════════ -->
+<!-- BANNER SLIDER -->
 <section class="banner-slider" id="bannerSlider">
     <div class="slider-wrapper" id="slider">
         <div class="slide"><img src="https://i.imgur.com/VDY1cAE.png" alt="Banner"></div>
@@ -718,13 +564,11 @@ tbody tr:hover { background: #fffbec; }
     <div class="dots-container" id="dotsContainer"></div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════
-     KONTEN UTAMA
-══════════════════════════════════════════════════════ -->
+<!-- ══ KONTEN UTAMA ══ -->
 <div id="main-content">
 
     <section class="schedule-section">
-        <div class="section-title"> ANALISA PELUANG (HOME | DRAW | AWAY)</div>
+        <div class="section-title">ANALISA PELUANG (HOME | DRAW | AWAY)</div>
 
         <div class="tab-filter" id="tabFilter">
             <button class="tab-btn active" onclick="filterLeague('ALL')">SEMUA</button>
@@ -771,10 +615,9 @@ tbody tr:hover { background: #fffbec; }
         </div>
     </section>
 
-
     <!-- Judul prediksi skor -->
     <div style="text-align:center;margin-top:50px;margin-bottom:-10px;">
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#ffd700;text-transform:uppercase;letter-spacing:1px;margin:0;text-shadow:1px 1px 3px rgba(0,0,0,0.8);">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#b8860b;text-transform:uppercase;letter-spacing:1px;margin:0;">
             ⚽ HASIL PREDIKSI SKOR AKURAT ⚽
         </h2>
         <div style="width:60px;height:3px;background:#ffd700;margin:8px auto 0;border-radius:2px;"></div>
@@ -782,7 +625,7 @@ tbody tr:hover { background: #fffbec; }
 
     <!-- Kartu prediksi -->
     <main id="matches" class="match-grid">
-        <div style="grid-column:1/-1;text-align:center;padding:30px;color:rgba(255,255,255,0.4);">
+        <div style="grid-column:1/-1;text-align:center;padding:30px;color:#999999;">
             <span class="loader-ring"></span>Memuat PREDIKSI SKOR AKURAT...
         </div>
     </main>
@@ -795,10 +638,14 @@ tbody tr:hover { background: #fffbec; }
 ══════════════════════════════════════════════════════ -->
 <div class="extra-page" id="page-statistik">
 
-    <div class="section-title"> STATISTIK RINJANI4D</div>
+    <div class="section-title">STATISTIK RINJANI4D</div>
+
+    <div class="back-bar">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
 
     <div class="ep-card">
-        <div class="ep-card-title"> Ringkasan Performa</div>
+        <div class="ep-card-title">Ringkasan Performa</div>
         <div class="stat-grid">
             <div class="stat-box"><div class="stat-num">1,284</div><div class="stat-lbl">Total Prediksi</div></div>
             <div class="stat-box"><div class="stat-num">78%</div><div class="stat-lbl">Akurasi Global</div></div>
@@ -808,7 +655,7 @@ tbody tr:hover { background: #fffbec; }
     </div>
 
     <div class="ep-card">
-        <div class="ep-card-title"> Akurasi Per Liga</div>
+        <div class="ep-card-title">Akurasi Per Liga</div>
         <div class="prog-row">
             <span class="prog-label">Premier League</span>
             <div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div>
@@ -841,22 +688,19 @@ tbody tr:hover { background: #fffbec; }
         </div>
     </div>
 
-<div class="ep-card">
-    <div class="ep-card-title"> Tren Akurasi 6 Bulan Terakhir</div>
-    <div class="stat-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">74%</div><div class="stat-lbl">Jan</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">76%</div><div class="stat-lbl">Feb</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">75%</div><div class="stat-lbl">Mar</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">79%</div><div class="stat-lbl">Apr</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
+    <div class="ep-card">
+        <div class="ep-card-title">Tren Akurasi 6 Bulan Terakhir</div>
+        <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">74%</div><div class="stat-lbl">Jan</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">76%</div><div class="stat-lbl">Feb</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">75%</div><div class="stat-lbl">Mar</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">79%</div><div class="stat-lbl">Apr</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
+        </div>
     </div>
-</div>
 
-    <div style="text-align:center;">
-        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
-    </div>
-</div>
+</div><!-- /#page-statistik -->
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -864,10 +708,14 @@ tbody tr:hover { background: #fffbec; }
 ══════════════════════════════════════════════════════ -->
 <div class="extra-page" id="page-panduan">
 
-    <div class="section-title"> PANDUAN PENGGUNAAN</div>
+    <div class="section-title">PANDUAN PENGGUNAAN</div>
+
+    <div class="back-bar">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
 
     <div class="ep-card">
-        <div class="ep-card-title"> Cara Membaca Prediksi</div>
+        <div class="ep-card-title">Cara Membaca Prediksi</div>
         <ul class="step-list">
             <li class="step-item">
                 <div class="step-num">1</div>
@@ -880,7 +728,7 @@ tbody tr:hover { background: #fffbec; }
                 <div class="step-num">2</div>
                 <div class="step-content">
                     <h4>Pahami Win Probability</h4>
-                    <p>Format <strong style="color:#ffd700;">H 55% | D 20% | A 25%</strong> berarti tim tuan rumah memiliki peluang menang 55%, seri 20%, dan tim tamu 25%. Pilih outcome dengan peluang tertinggi untuk parlay Anda.</p>
+                    <p>Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong> berarti tim tuan rumah memiliki peluang menang 55%, seri 20%, dan tim tamu 25%. Pilih outcome dengan peluang tertinggi untuk parlay Anda.</p>
                 </div>
             </li>
             <li class="step-item">
@@ -894,7 +742,7 @@ tbody tr:hover { background: #fffbec; }
                 <div class="step-num">4</div>
                 <div class="step-content">
                     <h4>Salin & Pasang Prediksi</h4>
-                    <p>Klik tombol <strong style="color:#ffd700;"> Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
+                    <p>Klik tombol <strong style="color:#b8860b;">📋 Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
                 </div>
             </li>
             <li class="step-item">
@@ -923,10 +771,7 @@ tbody tr:hover { background: #fffbec; }
         </p>
     </div>
 
-    <div style="text-align:center;">
-        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
-    </div>
-</div>
+</div><!-- /#page-panduan -->
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -934,17 +779,19 @@ tbody tr:hover { background: #fffbec; }
 ══════════════════════════════════════════════════════ -->
 <div class="extra-page" id="page-tentang">
 
-    <div class="section-title"> TENTANG KAMI</div>
+    <div class="section-title">TENTANG KAMI</div>
+
+    <div class="back-bar">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
 
     <div class="ep-card">
         <div class="ep-card-title">🌟 Siapa RINJANI4D?</div>
-        
         <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8; margin-bottom:16px;">
             RINJANI4D adalah platform prediksi dan analisa bola terpercaya yang telah berdiri sejak 2020.
             Kami menggunakan kombinasi model statistik canggih, data historis pertandingan, dan analisa ahli
             untuk menghadirkan prediksi skor paling akurat kepada para penggemar sepak bola di Indonesia.
         </p>
-        
         <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8;">
             Dengan lebih dari <strong style="color:#b8860b;">50.000 pengguna aktif</strong> setiap bulan dan
             tingkat akurasi prediksi di atas <strong style="color:#b8860b;">78%</strong>, kami berkomitmen
@@ -953,23 +800,25 @@ tbody tr:hover { background: #fffbec; }
     </div>
 
     <div class="ep-card">
-        <div class="ep-card-title"> Visi & Misi</div>
+        <div class="ep-card-title">Visi & Misi</div>
         <div class="vm-grid">
             <div class="vm-box">
-                <div class="vm-box-title"> Visi</div>
+                <div class="vm-box-title">Visi</div>
                 <p>Menjadi platform prediksi bola nomor satu di Asia Tenggara dengan standar akurasi tertinggi.</p>
             </div>
             <div class="vm-box">
-                <div class="vm-box-title"> Misi</div>
+                <div class="vm-box-title">Misi</div>
                 <p>Memberikan analisa bola yang akurat, transparan, dan real-time kepada seluruh penggemar sepak bola.</p>
             </div>
         </div>
     </div>
 
-    <div style="text-align:center;">
-        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+       </div>
+
+            </div>
     </div>
-</div>
+
+</div><!-- /#page-tentang -->
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -979,8 +828,12 @@ tbody tr:hover { background: #fffbec; }
 
     <div class="section-title">❓ FAQ — PERTANYAAN UMUM</div>
 
+    <div class="back-bar">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
+
     <div class="ep-card">
-        <div class="ep-card-title"> Pertanyaan yang Sering Diajukan</div>
+        <div class="ep-card-title">Pertanyaan yang Sering Diajukan</div>
 
         <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
@@ -1000,7 +853,7 @@ tbody tr:hover { background: #fffbec; }
                 <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-                Tingkat akurasi rata-rata global kami adalah <strong style="color:#ffd700;">78%</strong> berdasarkan
+                Tingkat akurasi rata-rata global kami adalah <strong style="color:#b8860b;">78%</strong> berdasarkan
                 rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
                 Namun perlu diingat bahwa sepak bola tetap memiliki unsur ketidakpastian.
             </div>
@@ -1013,7 +866,7 @@ tbody tr:hover { background: #fffbec; }
             </button>
             <div class="faq-a">
                 Jadwal dan prediksi diperbarui setiap hari oleh tim analis kami, biasanya antara pukul
-                08:00 – 12:00 WIB. Halaman ini juga mendukung <strong style="color:#ffd700;">update real-time</strong>
+                08:00 – 12:00 WIB. Halaman ini juga mendukung <strong style="color:#b8860b;">update real-time</strong>
                 via Supabase Realtime — begitu admin memperbarui data, tampilan di layar Anda otomatis berubah
                 tanpa perlu reload.
             </div>
@@ -1025,7 +878,7 @@ tbody tr:hover { background: #fffbec; }
                 <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-                Format <strong style="color:#ffd700;">H 55% | D 20% | A 25%</strong> dibaca sebagai berikut:
+                Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong> dibaca sebagai berikut:
                 H = Home (tuan rumah) punya peluang menang 55%, D = Draw (seri) 20%, A = Away (tamu) 25%.
                 Total selalu mendekati 100%.
             </div>
@@ -1050,7 +903,7 @@ tbody tr:hover { background: #fffbec; }
             </button>
             <div class="faq-a">
                 Anda dapat menghubungi tim kami melalui live chat di platform utama
-                <strong style="color:#ffd700;">rinjaniman.com</strong> atau melalui customer service
+                <strong style="color:#b8860b;">rinjaniman.com</strong> atau melalui customer service
                 yang tersedia 24 jam.
             </div>
         </div>
@@ -1070,10 +923,7 @@ tbody tr:hover { background: #fffbec; }
 
     </div>
 
-    <div style="text-align:center;">
-        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
-    </div>
-</div>
+</div><!-- /#page-faq -->
 
 
 <a href="https://rinjaniman.com" target="_blank" class="floating">MAIN SEKARANG</a>
