@@ -374,8 +374,8 @@ tbody tr:hover { background: #fffbec; }
     background: none !important;
     border-radius: 10px;
     object-fit: cover;
-    border: 2px solid #ffd700;
-    box-shadow: 0 5px 15px rgba(255,215,0,0.3);
+    border: 2px solid #000000 !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transform: rotateY(calc(var(--i) * (360deg / var(--n)))) translateZ(280px);
 }
 @keyframes rotate {
@@ -426,7 +426,7 @@ tbody tr:hover { background: #fffbec; }
 /* Card halaman tambahan — putih bersih */
 .ep-card {
     background: #ffffff;
-    border: 1px solid rgba(255,215,0,0.4);
+    border: 1px solid #000000 !important;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 22px;
@@ -515,7 +515,7 @@ tbody tr:hover { background: #fffbec; }
     gap: 16px;
     align-items: flex-start;
     padding: 14px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid #000000;
 }
 .step-item:last-child { border-bottom: none; }
 .step-num {
@@ -549,7 +549,7 @@ tbody tr:hover { background: #fffbec; }
 }
 .tc-card {
     background: #fffbec;
-    border: 1px solid rgba(255,215,0,0.3);
+    border: 1px solid #000000;
     border-radius: 12px;
     padding: 22px 16px;
     text-align: center;
@@ -577,7 +577,7 @@ tbody tr:hover { background: #fffbec; }
 }
 
 /* FAQ accordion */
-.faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.faq-item { border-bottom: 1px solid #000000; }
 .faq-q {
     width: 100%;
     background: none;
@@ -841,14 +841,13 @@ tbody tr:hover { background: #fffbec; }
     </div>
 
     <div class="ep-card">
-        <div class="ep-card-title">📅 Tren Akurasi 6 Bulan Terakhir</div>
+        <div class="ep-card-title">📅 Tren Akurasi 5 Bulan Terakhir</div>
         <div class="stat-grid" style="grid-template-columns:repeat(6,1fr);">
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">74%</div><div class="stat-lbl">Jan</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">76%</div><div class="stat-lbl">Feb</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">75%</div><div class="stat-lbl">Mar</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">79%</div><div class="stat-lbl">Apr</div></div>
-            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div></div>
-            <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div>
         </div>
     </div>
 
@@ -937,19 +936,20 @@ tbody tr:hover { background: #fffbec; }
 
     <div class="ep-card">
         <div class="ep-card-title">🌟 Siapa RINJANI4D?</div>
-        <p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;">
+        
+        <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8; margin-bottom:16px;">
             RINJANI4D adalah platform prediksi dan analisa bola terpercaya yang telah berdiri sejak 2020.
             Kami menggunakan kombinasi model statistik canggih, data historis pertandingan, dan analisa ahli
             untuk menghadirkan prediksi skor paling akurat kepada para penggemar sepak bola di Indonesia.
         </p>
-        <p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.8;">
-            Dengan lebih dari <strong style="color:#ffd700;">50.000 pengguna aktif</strong> setiap bulan dan
-            tingkat akurasi prediksi di atas <strong style="color:#ffd700;">78%</strong>, kami berkomitmen
+        
+        <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8;">
+            Dengan lebih dari <strong style="color:#b8860b;">50.000 pengguna aktif</strong> setiap bulan dan
+            tingkat akurasi prediksi di atas <strong style="color:#b8860b;">78%</strong>, kami berkomitmen
             untuk terus meningkatkan kualitas analisa demi kepuasan member setia kami.
         </p>
     </div>
 
-    
     <div class="ep-card">
         <div class="ep-card-title"> Visi & Misi</div>
         <div class="vm-grid">
@@ -999,7 +999,7 @@ tbody tr:hover { background: #fffbec; }
             </button>
             <div class="faq-a">
                 Tingkat akurasi rata-rata global kami adalah <strong style="color:#ffd700;">78%</strong> berdasarkan
-                rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
+                rekap historis 5 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
                 Namun perlu diingat bahwa sepak bola tetap memiliki unsur ketidakpastian.
             </div>
         </div>
