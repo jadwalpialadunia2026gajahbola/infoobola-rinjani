@@ -7,8 +7,8 @@
     <link href="https://images.linkcdn.cloud/V2/507/favicon/favicon-1888287302.png" rel="icon" type="image/png"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<style>
-   /* ========================================
+    <style>
+       /* ========================================
    RINJANI4D — TEMA TERANG KREM-EMAS
    Sesuai referensi gambar
    ======================================== */
@@ -426,7 +426,7 @@ tbody tr:hover { background: #fffbec; }
 /* Card halaman tambahan — putih bersih */
 .ep-card {
     background: #ffffff;
-    border: 1px solid #000000 !important;
+    border: 1px solid rgba(255,215,0,0.4);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 22px;
@@ -515,7 +515,7 @@ tbody tr:hover { background: #fffbec; }
     gap: 16px;
     align-items: flex-start;
     padding: 14px 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .step-item:last-child { border-bottom: none; }
 .step-num {
@@ -549,7 +549,7 @@ tbody tr:hover { background: #fffbec; }
 }
 .tc-card {
     background: #fffbec;
-    border: 1px solid #000000;
+    border: 1px solid rgba(255,215,0,0.3);
     border-radius: 12px;
     padding: 22px 16px;
     text-align: center;
@@ -577,7 +577,7 @@ tbody tr:hover { background: #fffbec; }
 }
 
 /* FAQ accordion */
-.faq-item { border-bottom: 1px solid #000000; }
+.faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
 .faq-q {
     width: 100%;
     background: none;
@@ -689,10 +689,10 @@ tbody tr:hover { background: #fffbec; }
      NAVBAR HORIZONTAL — Statistik, Panduan, Tentang, FAQ
 ══════════════════════════════════════════════════════ -->
 <nav class="navbar-horizontal" id="navbarHorizontal">
-    <button class="nav-tab" onclick="showExtraPage('statistik')">Statistik</button>
-    <button class="nav-tab" onclick="showExtraPage('panduan')"> Panduan</button>
-    <button class="nav-tab" onclick="showExtraPage('tentang')"> Tentang Kami</button>
-    <button class="nav-tab" onclick="showExtraPage('faq')"> FAQ</button>
+    <button class="nav-tab" onclick="showExtraPage('statistik')">| Statistik |</button>
+    <button class="nav-tab" onclick="showExtraPage('panduan')"> | Panduan | </button>
+    <button class="nav-tab" onclick="showExtraPage('tentang')"> | Tentang Kami |</button>
+    <button class="nav-tab" onclick="showExtraPage('faq')"> | FAQ | </button>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════
@@ -774,7 +774,7 @@ tbody tr:hover { background: #fffbec; }
     <!-- Judul prediksi skor -->
     <div style="text-align:center;margin-top:50px;margin-bottom:-10px;">
         <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#ffd700;text-transform:uppercase;letter-spacing:1px;margin:0;text-shadow:1px 1px 3px rgba(0,0,0,0.8);">
-             HASIL PREDIKSI SKOR AKURAT 
+            ⚽ HASIL PREDIKSI SKOR AKURAT ⚽
         </h2>
         <div style="width:60px;height:3px;background:#ffd700;margin:8px auto 0;border-radius:2px;"></div>
     </div>
@@ -797,7 +797,7 @@ tbody tr:hover { background: #fffbec; }
     <div class="section-title"> STATISTIK RINJANI4D</div>
 
     <div class="ep-card">
-        <div class="ep-card-title">2 Ringkasan Performa</div>
+        <div class="ep-card-title"> Ringkasan Performa</div>
         <div class="stat-grid">
             <div class="stat-box"><div class="stat-num">1,284</div><div class="stat-lbl">Total Prediksi</div></div>
             <div class="stat-box"><div class="stat-num">78%</div><div class="stat-lbl">Akurasi Global</div></div>
@@ -841,13 +841,14 @@ tbody tr:hover { background: #fffbec; }
     </div>
 
     <div class="ep-card">
-        <div class="ep-card-title">📅 Tren Akurasi 5 Bulan Terakhir</div>
+        <div class="ep-card-title"> Tren Akurasi 6 Bulan Terakhir</div>
         <div class="stat-grid" style="grid-template-columns:repeat(6,1fr);">
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">74%</div><div class="stat-lbl">Jan</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">76%</div><div class="stat-lbl">Feb</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">75%</div><div class="stat-lbl">Mar</div></div>
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">79%</div><div class="stat-lbl">Apr</div></div>
-            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
         </div>
     </div>
 
@@ -892,7 +893,7 @@ tbody tr:hover { background: #fffbec; }
                 <div class="step-num">4</div>
                 <div class="step-content">
                     <h4>Salin & Pasang Prediksi</h4>
-                    <p>Klik tombol <strong style="color:#ffd700;">📋 Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
+                    <p>Klik tombol <strong style="color:#ffd700;"> Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
                 </div>
             </li>
             <li class="step-item">
@@ -999,7 +1000,7 @@ tbody tr:hover { background: #fffbec; }
             </button>
             <div class="faq-a">
                 Tingkat akurasi rata-rata global kami adalah <strong style="color:#ffd700;">78%</strong> berdasarkan
-                rekap historis 5 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
+                rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
                 Namun perlu diingat bahwa sepak bola tetap memiliki unsur ketidakpastian.
             </div>
         </div>
