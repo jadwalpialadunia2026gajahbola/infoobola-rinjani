@@ -6,7 +6,7 @@
     <title>RINJANI4D — Analisa & Prediksi Bola</title>
     <link href="https://images.linkcdn.cloud/V2/507/favicon/favicon-1888287302.png" rel="icon" type="image/png"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,18 +31,20 @@
 
         .bg-overlay {
             position: fixed; inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             z-index: -1;
         }
 
-        /* HEADER */
+        /* ══════════════════════════════════════════
+           HEADER
+        ══════════════════════════════════════════ */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 2px solid #ffd700;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(255,215,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -60,12 +62,13 @@
             display: none;
             position: absolute;
             top: 50px; right: 0;
-            background: rgba(17, 17, 17, 0.95);
+            background: rgba(17,17,17,0.97);
             border: 1px solid #ffd700;
             border-radius: 8px;
-            width: 160px;
+            width: 150px;
             flex-direction: column;
             backdrop-filter: blur(10px);
+            z-index: 1100;
         }
         .dropdown-card.active { display: flex; }
         .dropdown-card a {
@@ -74,11 +77,58 @@
             padding: 12px 15px;
             font-size: 14px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: 0.2s;
         }
         .dropdown-card a:last-child { border-bottom: none; }
         .dropdown-card a:hover { background: #ffd700; color: #000; }
 
-        /* MARQUEE */
+        /* ══════════════════════════════════════════
+           NAVBAR HORIZONTAL BARU
+        ══════════════════════════════════════════ */
+        .navbar-horizontal {
+            background: rgba(0,0,0,0.88);
+            border-bottom: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            scrollbar-width: none;
+            gap: 0;
+            position: sticky;
+            top: 65px;
+            z-index: 999;
+        }
+        .navbar-horizontal::-webkit-scrollbar { display: none; }
+
+        .nav-tab {
+            flex-shrink: 0;
+            padding: 13px 22px;
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: 'Barlow', sans-serif;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+        }
+        .nav-tab:hover {
+            color: #ffd700;
+            background: rgba(255,215,0,0.05);
+        }
+        .nav-tab.active {
+            color: #ffd700;
+            border-bottom-color: #ffd700;
+            background: rgba(255,215,0,0.08);
+        }
+
+        /* ══════════════════════════════════════════
+           MARQUEE
+        ══════════════════════════════════════════ */
         .marquee-container {
             background: #b32e2e;
             height: 35px;
@@ -91,7 +141,9 @@
             font-weight: 600; font-size: 14px; color: #fff; display: block;
         }
 
-        /* BANNER SLIDER */
+        /* ══════════════════════════════════════════
+           BANNER SLIDER
+        ══════════════════════════════════════════ */
         .banner-slider {
             width: 100%;
             position: relative;
@@ -99,20 +151,16 @@
             aspect-ratio: 21 / 9;
             border-bottom: 2px solid #ffd700;
         }
-        @media (max-width: 768px) {
-            .banner-slider { aspect-ratio: 16 / 9; }
-        }
+        @media (max-width: 768px) { .banner-slider { aspect-ratio: 16 / 9; } }
+
         .slider-wrapper {
             display: flex;
             transition: transform 0.6s ease-in-out;
             height: 100%;
         }
         .slide { min-width: 100%; height: 100%; }
-        .slide img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+        .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
         .prev-btn, .next-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(0,0,0,0.5); color: #ffd700;
@@ -122,7 +170,9 @@
         .next-btn { right: 0; }
         .prev-btn { left: 0; }
 
-        /* TAB FILTER */
+        /* ══════════════════════════════════════════
+           TAB FILTER LIGA
+        ══════════════════════════════════════════ */
         .tab-filter {
             display: flex; gap: 10px;
             margin-bottom: 15px;
@@ -145,7 +195,9 @@
         }
         .tab-btn.active { background: #ffd700; color: #000; }
 
-        /* SCHEDULE TABLE */
+        /* ══════════════════════════════════════════
+           SCHEDULE SECTION
+        ══════════════════════════════════════════ */
         .schedule-section {
             padding: 25px 20px;
             max-width: 1100px;
@@ -158,7 +210,6 @@
             border-left: 4px solid #ffd700;
             padding-left: 15px;
         }
-
         .table-container {
             background: rgba(0,0,0,0.7);
             backdrop-filter: blur(8px);
@@ -181,7 +232,9 @@
             font-size: 14px;
         }
 
-        /* MATCH CARDS */
+        /* ══════════════════════════════════════════
+           MATCH CARDS
+        ══════════════════════════════════════════ */
         .match-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -201,12 +254,7 @@
         }
         .match-grid .card:hover { border-color: #ffd700; transform: translateY(-5px); }
 
-        .teams {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .teams { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .team { flex: 1; }
         .team img {
             width: 60px; height: 60px;
@@ -222,9 +270,7 @@
             border: 2px solid #ffd700;
             border-radius: 50%;
             background: rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 22px;
             margin: 0 auto 5px;
         }
@@ -257,7 +303,9 @@
         }
         .card-btn:hover { background: #fff; }
 
-        /* FLOATING BUTTON */
+        /* ══════════════════════════════════════════
+           FLOATING BUTTON
+        ══════════════════════════════════════════ */
         .floating {
             position: fixed;
             bottom: 20px; right: 20px;
@@ -271,7 +319,9 @@
             box-shadow: 0 4px 15px rgba(255,215,0,0.4);
         }
 
-        /* DOTS */
+        /* ══════════════════════════════════════════
+           DOTS SLIDER
+        ══════════════════════════════════════════ */
         .dots-container {
             position: absolute;
             bottom: 10px; left: 50%;
@@ -287,8 +337,10 @@
         }
         .dot.active { background: #ffd700; width: 25px; border-radius: 10px; }
 
-        /* 3D CAROUSEL */
-        .page { width: 100%; overflow: hidden; padding: 20px 0; }
+        /* ══════════════════════════════════════════
+           3D CAROUSEL
+        ══════════════════════════════════════════ */
+        .carousel-wrap { width: 100%; overflow: hidden; padding: 20px 0; }
         .scene {
             width: 160px; height: 230px;
             margin: 50px auto 70px auto;
@@ -316,7 +368,9 @@
             to   { transform: rotateY(360deg); }
         }
 
-        /* EMPTY / LOADING STATE */
+        /* ══════════════════════════════════════════
+           LOADING / EMPTY STATE
+        ══════════════════════════════════════════ */
         .state-msg {
             text-align: center;
             padding: 30px;
@@ -334,13 +388,270 @@
             margin-right: 8px;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ══════════════════════════════════════════
+           HALAMAN TAMBAHAN (Statistik, Panduan, dll)
+        ══════════════════════════════════════════ */
+        #main-content { display: block; }
+
+        .extra-page {
+            display: none;
+            padding: 30px 20px 80px;
+            max-width: 1100px;
+            margin: auto;
+            animation: fadePageIn 0.3s ease;
+        }
+        .extra-page.active { display: block; }
+
+        @keyframes fadePageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card container halaman tambahan */
+        .ep-card {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+        .ep-card-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+            letter-spacing: 0.5px;
+        }
+
+        /* Statistik */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+        .stat-box {
+            background: rgba(255,215,0,0.07);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 10px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .stat-box .stat-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: #ffd700;
+            line-height: 1;
+        }
+        .stat-box .stat-lbl {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            margin-top: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Progress bar */
+        .prog-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 13px;
+        }
+        .prog-label {
+            width: 130px;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+            color: rgba(255,255,255,0.8);
+        }
+        .prog-bar-wrap {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .prog-bar {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #ffd700, #ffaa00);
+        }
+        .prog-val {
+            width: 38px;
+            text-align: right;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffd700;
+            flex-shrink: 0;
+        }
+
+        /* Panduan steps */
+        .step-list { list-style: none; }
+        .step-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: #ffd700;
+            color: #000;
+            font-weight: 800;
+            font-size: 15px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-content h4 {
+            font-weight: 700;
+            font-size: 15px;
+            color: #ffd700;
+            margin-bottom: 4px;
+        }
+        .step-content p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+
+        /* Tentang — tim card */
+        .team-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .tc-card {
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.18);
+            border-radius: 12px;
+            padding: 22px 16px;
+            text-align: center;
+        }
+        .tc-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: rgba(255,215,0,0.12);
+            border: 2px solid #ffd700;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 12px;
+        }
+        .tc-name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #ffd700;
+            margin-bottom: 4px;
+        }
+        .tc-role {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* FAQ accordion */
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            padding: 16px 0;
+            font-family: 'Barlow', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.2s;
+        }
+        .faq-q:hover, .faq-q.open { color: #ffd700; }
+        .faq-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+            color: #ffd700;
+            line-height: 1;
+        }
+        .faq-q.open .faq-icon { transform: rotate(45deg); }
+        .faq-a {
+            display: none;
+            padding: 0 0 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+        }
+        .faq-a.open { display: block; }
+
+        /* Back link */
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #ffd700;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.75; }
+
+        /* Visi misi grid */
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .vm-box {
+            background: rgba(255,215,0,0.06);
+            border: 1px solid rgba(255,215,0,0.15);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .vm-box-title {
+            color: #ffd700;
+            font-weight: 800;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .vm-box p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .team-cards-grid { grid-template-columns: 1fr 1fr; }
+            .prog-label { width: 90px; font-size: 12px; }
+            .vm-grid { grid-template-columns: 1fr; }
+            .nav-tab { padding: 12px 16px; font-size: 12px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="bg-overlay"></div>
 
-<!-- HEADER -->
+<!-- ══════════════════════════════════════════════════════
+     HEADER — Burger hanya: Login, Daftar, Profil
+══════════════════════════════════════════════════════ -->
 <header>
     <div class="logo">
         <img src="https://i.imgur.com/DuwlIfJ.png" alt="Logo RINJANI4D">
@@ -357,8 +668,20 @@
     </div>
 </header>
 
-<!-- RUNNING TEXT (dinamis dari Supabase) -->
-<div class="marquee-container">
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR HORIZONTAL — Statistik, Panduan, Tentang, FAQ
+══════════════════════════════════════════════════════ -->
+<nav class="navbar-horizontal" id="navbarHorizontal">
+    <button class="nav-tab" onclick="showExtraPage('statistik')">Statistik</button>
+    <button class="nav-tab" onclick="showExtraPage('panduan')"> Panduan</button>
+    <button class="nav-tab" onclick="showExtraPage('tentang')"> Tentang Kami</button>
+    <button class="nav-tab" onclick="showExtraPage('faq')"> FAQ</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     MARQUEE
+══════════════════════════════════════════════════════ -->
+<div class="marquee-container" id="marqueeWrap">
     <div class="marquee-content">
         <marquee scrollamount="5" id="marqueeText">
             📢 RINJANI4D: Prediksi Terakurat Hari Ini! Memuat data...
@@ -366,10 +689,11 @@
     </div>
 </div>
 
-<!-- BANNER SLIDER (dinamis dari Supabase) -->
-<section class="banner-slider">
+<!-- ══════════════════════════════════════════════════════
+     BANNER SLIDER
+══════════════════════════════════════════════════════ -->
+<section class="banner-slider" id="bannerSlider">
     <div class="slider-wrapper" id="slider">
-        <!-- Diisi oleh JavaScript -->
         <div class="slide"><img src="https://i.imgur.com/VDY1cAE.png" alt="Banner"></div>
     </div>
     <button class="prev-btn" id="prevBtn">&#10094;</button>
@@ -377,76 +701,367 @@
     <div class="dots-container" id="dotsContainer"></div>
 </section>
 
-<!-- JADWAL & ANALISA -->
-<section class="schedule-section">
-    <div class="section-title">📊 ANALISA PELUANG (HOME | DRAW | AWAY)</div>
+<!-- ══════════════════════════════════════════════════════
+     KONTEN UTAMA
+══════════════════════════════════════════════════════ -->
+<div id="main-content">
 
-    <div class="tab-filter" id="tabFilter">
-        <button class="tab-btn active" onclick="filterLeague('ALL')">SEMUA</button>
+    <section class="schedule-section">
+        <div class="section-title"> ANALISA PELUANG (HOME | DRAW | AWAY)</div>
+
+        <div class="tab-filter" id="tabFilter">
+            <button class="tab-btn active" onclick="filterLeague('ALL')">SEMUA</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Waktu</th>
+                        <th>Liga</th>
+                        <th>Pertandingan</th>
+                        <th>Win Prob (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    <tr><td colspan="4">
+                        <div class="state-msg"><span class="loader-ring"></span>Memuat jadwal...</div>
+                    </td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3D Carousel -->
+        <div class="carousel-wrap">
+            <div class="scene">
+                <div class="a3d" style="--n: 14">
+                    <img class="carousel-img" style="--i:0"  src="https://i.imgur.com/Uceed81.png" alt="">
+                    <img class="carousel-img" style="--i:1"  src="https://i.imgur.com/NIrVpQn.png" alt="">
+                    <img class="carousel-img" style="--i:2"  src="https://i.imgur.com/px07dVq.png" alt="">
+                    <img class="carousel-img" style="--i:3"  src="https://i.imgur.com/0R2IF9w.png" alt="">
+                    <img class="carousel-img" style="--i:4"  src="https://i.imgur.com/DRyS7xv.png" alt="">
+                    <img class="carousel-img" style="--i:5"  src="https://i.imgur.com/X13Cy0b.png" alt="">
+                    <img class="carousel-img" style="--i:6"  src="https://i.imgur.com/mlg6W7S.png" alt="">
+                    <img class="carousel-img" style="--i:7"  src="https://i.imgur.com/OkLphOA.png" alt="">
+                    <img class="carousel-img" style="--i:8"  src="https://i.imgur.com/jfvL5X4.png" alt="">
+                    <img class="carousel-img" style="--i:9"  src="https://i.imgur.com/oNwcHez.png" alt="">
+                    <img class="carousel-img" style="--i:10" src="https://i.imgur.com/d8dSp1P.png" alt="">
+                    <img class="carousel-img" style="--i:11" src="https://i.imgur.com/Mg7WTwT.png" alt="">
+                    <img class="carousel-img" style="--i:12" src="https://i.imgur.com/yYVcOJb.png" alt="">
+                    <img class="carousel-img" style="--i:13" src="https://i.imgur.com/DBahwmx.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Judul prediksi skor -->
+    <div style="text-align:center;margin-top:50px;margin-bottom:-10px;">
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#ffd700;text-transform:uppercase;letter-spacing:1px;margin:0;text-shadow:1px 1px 3px rgba(0,0,0,0.8);">
+             HASIL PREDIKSI SKOR AKURAT 
+        </h2>
+        <div style="width:60px;height:3px;background:#ffd700;margin:8px auto 0;border-radius:2px;"></div>
     </div>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Waktu</th>
-                    <th>Liga</th>
-                    <th>Pertandingan</th>
-                    <th>Win Prob (%)</th>
-                </tr>
-            </thead>
-            <tbody id="scheduleBody">
-                <tr><td colspan="4">
-                    <div class="state-msg"><span class="loader-ring"></span>Memuat jadwal...</div>
-                </td></tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- Kartu prediksi -->
+    <main id="matches" class="match-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:30px;color:rgba(255,255,255,0.4);">
+            <span class="loader-ring"></span>Memuat PREDIKSI SKOR AKURAT...
+        </div>
+    </main>
 
-    <!-- 3D Carousel -->
-   <div class="page">
-        <div class="scene">    
-            <div class="a3d" style="--n: 12">      
-                <img class="carousel-img" style="--i: 0"  src="https://i.imgur.com/Uceed81.png" alt="Slide 1">      
-                <img class="carousel-img" style="--i: 1"  src="https://i.imgur.com/NIrVpQn.png" alt="Slide 2">      
-                <img class="carousel-img" style="--i: 2"  src="https://i.imgur.com/px07dVq.png" alt="Slide 3">      
-                <img class="carousel-img" style="--i: 3"  src="https://i.imgur.com/0R2IF9w.png" alt="Slide 4">      
-                <img class="carousel-img" style="--i: 4"  src="https://i.imgur.com/DRyS7xv.png" alt="Slide 5">      
-                <img class="carousel-img" style="--i: 5"  src="https://i.imgur.com/X13Cy0b.png" alt="Slide 6">      
-                <img class="carousel-img" style="--i: 6"  src="https://i.imgur.com/mlg6W7S.png" alt="Slide 7">      
-                <img class="carousel-img" style="--i: 7"  src="https://i.imgur.com/OkLphOA.png" alt="Slide 8">      
-                <img class="carousel-img" style="--i: 8"  src="https://i.imgur.com/jfvL5X4.png" alt="Slide 9">      
-                <img class="carousel-img" style="--i: 9"  src="https://i.imgur.com/oNwcHez.png" alt="Slide 10">      
-                <img class="carousel-img" style="--i: 10" src="https://i.imgur.com/d8dSp1P.png" alt="Slide 11">      
-                <img class="carousel-img" style="--i: 11" src="https://i.imgur.com/Mg7WTwT.png" alt="Slide 12">
-               <img class="carousel-img" style="--i: 12"
-src="https://i.imgur.com/yYVcOJb.png" alt="Slide 13">
-               <img class="carousel-img" style="--i: 13"
-src="https://i.imgur.com/DBahwmx.png" alt="Slide 14">
-            </div>  
+</div><!-- /#main-content -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     HALAMAN: STATISTIK
+══════════════════════════════════════════════════════ -->
+<div class="extra-page" id="page-statistik">
+
+    <div class="section-title"> STATISTIK RINJANI4D</div>
+
+    <div class="ep-card">
+        <div class="ep-card-title">2 Ringkasan Performa</div>
+        <div class="stat-grid">
+            <div class="stat-box"><div class="stat-num">1,284</div><div class="stat-lbl">Total Prediksi</div></div>
+            <div class="stat-box"><div class="stat-num">78%</div><div class="stat-lbl">Akurasi Global</div></div>
+            <div class="stat-box"><div class="stat-num">312</div><div class="stat-lbl">Parlay Menang</div></div>
+            <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Liga Aktif</div></div>
         </div>
     </div>
-</section>
-    <!-- ═══ KODE BARU: JUDUL PREDIKSI SKOR ═══ -->
-<div class="section-title-wrap" style="text-align: center; margin-top: 50px; margin-bottom: -10px;">
-  <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; color: #ffd700; text-transform: uppercase; letter-spacing: 1px; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-    ⚽ HASIL PREDIKSI SKOR AKURAT ⚽
-  </h2>
-  <div style="width: 60px; height: 3px; background: #ffd700; margin: 8px auto 0 auto; border-radius: 2px;"></div>
+
+    <div class="ep-card">
+        <div class="ep-card-title"> Akurasi Per Liga</div>
+        <div class="prog-row">
+            <span class="prog-label">Premier League</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div>
+            <span class="prog-val">82%</span>
+        </div>
+        <div class="prog-row">
+            <span class="prog-label">La Liga</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:79%"></div></div>
+            <span class="prog-val">79%</span>
+        </div>
+        <div class="prog-row">
+            <span class="prog-label">Serie A</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:75%"></div></div>
+            <span class="prog-val">75%</span>
+        </div>
+        <div class="prog-row">
+            <span class="prog-label">Bundesliga</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:80%"></div></div>
+            <span class="prog-val">80%</span>
+        </div>
+        <div class="prog-row">
+            <span class="prog-label">UCL</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:71%"></div></div>
+            <span class="prog-val">71%</span>
+        </div>
+        <div class="prog-row">
+            <span class="prog-label">Liga 1</span>
+            <div class="prog-bar-wrap"><div class="prog-bar" style="width:76%"></div></div>
+            <span class="prog-val">76%</span>
+        </div>
+    </div>
+
+    <div class="ep-card">
+        <div class="ep-card-title">📅 Tren Akurasi 6 Bulan Terakhir</div>
+        <div class="stat-grid" style="grid-template-columns:repeat(6,1fr);">
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">74%</div><div class="stat-lbl">Jan</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">76%</div><div class="stat-lbl">Feb</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">75%</div><div class="stat-lbl">Mar</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">79%</div><div class="stat-lbl">Apr</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">80%</div><div class="stat-lbl">Mei</div></div>
+            <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
 </div>
 
-<!-- KARTU PREDIKSI SKOR AKURAT -->
-<main id="matches" class="match-grid">
-    <div style="grid-column:1/-1;text-align:center;padding:30px;color:rgba(255,255,255,0.4);">
-        <span class="loader-ring"></span>Memuat PREDIKSI SKOR AKURAT...
+
+<!-- ══════════════════════════════════════════════════════
+     HALAMAN: PANDUAN
+══════════════════════════════════════════════════════ -->
+<div class="extra-page" id="page-panduan">
+
+    <div class="section-title"> PANDUAN PENGGUNAAN</div>
+
+    <div class="ep-card">
+        <div class="ep-card-title"> Cara Membaca Prediksi</div>
+        <ul class="step-list">
+            <li class="step-item">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Buka Jadwal Hari Ini</h4>
+                    <p>Lihat tabel jadwal di halaman utama. Setiap baris menampilkan waktu kick-off (WIB), nama liga, pertandingan, dan persentase peluang menang untuk Home, Draw, dan Away.</p>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Pahami Win Probability</h4>
+                    <p>Format <strong style="color:#ffd700;">H 55% | D 20% | A 25%</strong> berarti tim tuan rumah memiliki peluang menang 55%, seri 20%, dan tim tamu 25%. Pilih outcome dengan peluang tertinggi untuk parlay Anda.</p>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Cek Prediksi Skor Akurat</h4>
+                    <p>Scroll ke bawah untuk melihat kartu prediksi skor. Prediksi dihasilkan dari analisa statistik mendalam, head-to-head, dan kondisi tim terkini.</p>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Salin & Pasang Prediksi</h4>
+                    <p>Klik tombol <strong style="color:#ffd700;">📋 Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <h4>Filter Berdasarkan Liga</h4>
+                    <p>Gunakan tombol filter di atas tabel jadwal untuk menampilkan hanya pertandingan dari liga tertentu, misalnya EPL, UCL, atau Liga 1.</p>
+                </div>
+            </li>
+            <li class="step-item">
+                <div class="step-num">6</div>
+                <div class="step-content">
+                    <h4>Update Real-Time Otomatis</h4>
+                    <p>Halaman ini terhubung ke database via Supabase Realtime. Setiap ada pembaruan jadwal atau prediksi baru, data di layar otomatis diperbarui tanpa perlu reload halaman.</p>
+                </div>
+            </li>
+        </ul>
     </div>
-</main>
+
+    <div class="ep-card">
+        <div class="ep-card-title">⚠️ Disclaimer Penting</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.8;">
+            Prediksi yang disajikan RINJANI4D didasarkan pada analisa statistik dan bukan jaminan hasil pertandingan.
+            Selalu bertaruh sesuai kemampuan finansial Anda. Bermainlah secara bertanggung jawab.
+            RINJANI4D tidak bertanggung jawab atas kerugian finansial yang timbul dari penggunaan informasi di situs ini.
+        </p>
+    </div>
+
+    <div style="text-align:center;">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     HALAMAN: TENTANG KAMI
+══════════════════════════════════════════════════════ -->
+<div class="extra-page" id="page-tentang">
+
+    <div class="section-title"> TENTANG KAMI</div>
+
+    <div class="ep-card">
+        <div class="ep-card-title">🌟 Siapa RINJANI4D?</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:16px;">
+            RINJANI4D adalah platform prediksi dan analisa bola terpercaya yang telah berdiri sejak 2020.
+            Kami menggunakan kombinasi model statistik canggih, data historis pertandingan, dan analisa ahli
+            untuk menghadirkan prediksi skor paling akurat kepada para penggemar sepak bola di Indonesia.
+        </p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.8;">
+            Dengan lebih dari <strong style="color:#ffd700;">50.000 pengguna aktif</strong> setiap bulan dan
+            tingkat akurasi prediksi di atas <strong style="color:#ffd700;">78%</strong>, kami berkomitmen
+            untuk terus meningkatkan kualitas analisa demi kepuasan member setia kami.
+        </p>
+    </div>
+
+    
+    <div class="ep-card">
+        <div class="ep-card-title"> Visi & Misi</div>
+        <div class="vm-grid">
+            <div class="vm-box">
+                <div class="vm-box-title"> Visi</div>
+                <p>Menjadi platform prediksi bola nomor satu di Asia Tenggara dengan standar akurasi tertinggi.</p>
+            </div>
+            <div class="vm-box">
+                <div class="vm-box-title"> Misi</div>
+                <p>Memberikan analisa bola yang akurat, transparan, dan real-time kepada seluruh penggemar sepak bola.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     HALAMAN: FAQ
+══════════════════════════════════════════════════════ -->
+<div class="extra-page" id="page-faq">
+
+    <div class="section-title">❓ FAQ — PERTANYAAN UMUM</div>
+
+    <div class="ep-card">
+        <div class="ep-card-title"> Pertanyaan yang Sering Diajukan</div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Apakah prediksi di RINJANI4D gratis?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Ya, semua prediksi dan jadwal pertandingan yang ditampilkan di halaman utama ini sepenuhnya gratis
+                dan dapat diakses oleh siapa saja tanpa perlu mendaftar. Untuk fitur premium seperti prediksi
+                eksklusif dan analisa mendalam, silakan daftar akun di platform kami.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Seberapa akurat prediksi yang diberikan?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Tingkat akurasi rata-rata global kami adalah <strong style="color:#ffd700;">78%</strong> berdasarkan
+                rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
+                Namun perlu diingat bahwa sepak bola tetap memiliki unsur ketidakpastian.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Kapan prediksi dan jadwal diperbarui?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Jadwal dan prediksi diperbarui setiap hari oleh tim analis kami, biasanya antara pukul
+                08:00 – 12:00 WIB. Halaman ini juga mendukung <strong style="color:#ffd700;">update real-time</strong>
+                via Supabase Realtime — begitu admin memperbarui data, tampilan di layar Anda otomatis berubah
+                tanpa perlu reload.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Bagaimana cara membaca tabel Win Probability?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Format <strong style="color:#ffd700;">H 55% | D 20% | A 25%</strong> dibaca sebagai berikut:
+                H = Home (tuan rumah) punya peluang menang 55%, D = Draw (seri) 20%, A = Away (tamu) 25%.
+                Total selalu mendekati 100%.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Apakah ada aplikasi mobile RINJANI4D?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Saat ini RINJANI4D tersedia dalam versi web yang sudah dioptimalkan untuk mobile browser.
+                Anda bisa menambahkan situs ini ke layar utama smartphone untuk pengalaman seperti aplikasi native.
+                Versi Android dan iOS sedang dalam pengembangan.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Bagaimana cara menghubungi tim RINJANI4D?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Anda dapat menghubungi tim kami melalui live chat di platform utama
+                <strong style="color:#ffd700;">rinjaniman.com</strong> atau melalui customer service
+                yang tersedia 24 jam.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                Data apa saja yang digunakan untuk membuat prediksi?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+                Prediksi kami menggunakan kombinasi dari: statistik head-to-head 5 musim terakhir,
+                form terkini masing-masing tim, kondisi pemain & cedera, faktor kandang/tandang,
+                statistik gol & kebobolan, serta model machine learning yang dilatih dari lebih dari
+                50.000 data pertandingan historis.
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center;">
+        <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
+    </div>
+</div>
+
 
 <a href="https://rinjaniman.com" target="_blank" class="floating">MAIN SEKARANG</a>
 
 <script>
 // ═══════════════════════════════════════════════════════
-// SUPABASE CONFIG (PASANGAN VALDAS & FIXED)
+// SUPABASE CLIENT
 // ═══════════════════════════════════════════════════════
 const SUPABASE_URL  = 'https://bejygkgfpeuhphrrelmy.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlanlna2dmcGV1aHBocnJlbG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2MzIwNTgsImV4cCI6MjA5NjIwODA1OH0.S8zDfyUu3tcmFeqZXkzj-nPkdW14zm-mLyYr3iBGvcM';
@@ -457,7 +1072,9 @@ let allSchedules = [];
 let sliderIdx    = 0;
 let sliderSlides = [];
 
+// ═══════════════════════════════════════════════════════
 // BURGER MENU
+// ═══════════════════════════════════════════════════════
 const burger       = document.getElementById('burger');
 const dropdownCard = document.getElementById('dropdownCard');
 burger.addEventListener('click', e => {
@@ -466,23 +1083,87 @@ burger.addEventListener('click', e => {
 });
 document.addEventListener('click', () => dropdownCard.classList.remove('active'));
 
-// LOAD MARQUEE
-async function loadMarquee() {
-    try {
-        const { data, error } = await db.from('marquee').select('text').eq('is_active', true).order('created_at', { ascending: false });
-        if (error) throw error;
-        if (data && data.length > 0) {
-            document.getElementById('marqueeText').textContent = data.map(r => r.text).join('   ●   ');
-        } else {
-            document.getElementById('marqueeText').textContent = "📢 RINJANI4D: Prediksi Terakurat Hari Ini!";
-        }
-    } catch (e) {
-        document.getElementById('marqueeText').textContent = "📢 RINJANI4D: Prediksi Terakurat Hari Ini!";
+// ═══════════════════════════════════════════════════════
+// NAVIGASI HALAMAN TAMBAHAN
+// ═══════════════════════════════════════════════════════
+function showExtraPage(id) {
+    const mainContent = document.getElementById('main-content');
+    const marqueeWrap = document.getElementById('marqueeWrap');
+    const bannerSlider = document.getElementById('bannerSlider');
+    const allExtra    = document.querySelectorAll('.extra-page');
+    const navTabs     = document.querySelectorAll('.nav-tab');
+
+    // Reset semua
+    allExtra.forEach(p => p.classList.remove('active'));
+    navTabs.forEach(t => t.classList.remove('active'));
+
+    if (id) {
+        // Sembunyikan elemen khusus halaman utama
+        mainContent.style.display  = 'none';
+        marqueeWrap.style.display  = 'none';
+        bannerSlider.style.display = 'none';
+
+        // Tampilkan halaman yang dipilih
+        const target = document.getElementById('page-' + id);
+        if (target) target.classList.add('active');
+
+        // Aktifkan tab yang sesuai
+        navTabs.forEach(t => {
+            if (t.getAttribute('onclick')?.includes("'" + id + "'")) {
+                t.classList.add('active');
+            }
+        });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        // Kembali ke halaman utama
+        mainContent.style.display  = 'block';
+        marqueeWrap.style.display  = 'flex';
+        bannerSlider.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Tutup burger dropdown
+    dropdownCard.classList.remove('active');
+}
+
+// ═══════════════════════════════════════════════════════
+// FAQ ACCORDION
+// ═══════════════════════════════════════════════════════
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Tutup semua
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+    });
+
+    // Buka yang diklik (jika belum terbuka)
+    if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
     }
 }
 
 // ═══════════════════════════════════════════════════════
-// NEW INFINITE BANNER SLIDER (SMOOTH LOOP)
+// LOAD MARQUEE
+// ═══════════════════════════════════════════════════════
+async function loadMarquee() {
+    try {
+        const { data, error } = await db.from('marquee').select('text').eq('is_active', true).order('created_at', { ascending: false });
+        if (error) throw error;
+        document.getElementById('marqueeText').textContent = data?.length
+            ? data.map(r => r.text).join('   ●   ')
+            : '📢 RINJANI4D: Prediksi Terakurat Hari Ini!';
+    } catch {
+        document.getElementById('marqueeText').textContent = '📢 RINJANI4D: Prediksi Terakurat Hari Ini!';
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+// BANNER SLIDER
 // ═══════════════════════════════════════════════════════
 let isTransitioning = false;
 
@@ -490,106 +1171,84 @@ async function loadBanner() {
     try {
         const { data, error } = await db.from('banner').select('*').eq('is_active', true).order('sort_order', { ascending: true });
         if (error) throw error;
-        if (!data || data.length === 0) return;
-        
+        if (!data || !data.length) return;
+
         const sw = document.getElementById('slider');
         const dc = document.getElementById('dotsContainer');
         sw.innerHTML = ''; dc.innerHTML = '';
-        
-        sliderSlides = data;
-        sliderIdx = 1; // Mulai dari index 1 (karena index 0 berisi klon gambar terakhir)
 
-        // 1. Buat Indikator Dots asli
+        sliderSlides = data;
+        sliderIdx    = 1;
+
         data.forEach((_, i) => {
-            const dot = document.createElement('div'); 
+            const dot = document.createElement('div');
             dot.className = 'dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(i + 1)); 
+            dot.addEventListener('click', () => goToSlide(i + 1));
             dc.appendChild(dot);
         });
 
-        // 2. Tambahkan Klon Gambar Terakhir di paling depan
         const lastClone = document.createElement('div'); lastClone.className = 'slide';
-        const imgLast = document.createElement('img'); imgLast.src = data[data.length - 1].image_url;
+        const imgLast   = document.createElement('img'); imgLast.src = data[data.length - 1].image_url;
         lastClone.appendChild(imgLast); sw.appendChild(lastClone);
 
-        // 3. Tambahkan Semua Gambar Asli dari Supabase
-        data.forEach((banner) => {
+        data.forEach(banner => {
             const slide = document.createElement('div'); slide.className = 'slide';
-            const img = document.createElement('img'); img.src = banner.image_url; img.alt = banner.alt_text || 'Banner';
+            const img   = document.createElement('img'); img.src = banner.image_url; img.alt = banner.alt_text || 'Banner';
             slide.appendChild(img); sw.appendChild(slide);
         });
 
-        // 4. Tambahkan Klon Gambar Pertama di paling belakang
         const firstClone = document.createElement('div'); firstClone.className = 'slide';
-        const imgFirst = document.createElement('img'); imgFirst.src = data[0].image_url;
+        const imgFirst   = document.createElement('img'); imgFirst.src = data[0].image_url;
         firstClone.appendChild(imgFirst); sw.appendChild(firstClone);
 
-        // Set posisi awal container ke gambar asli pertama tanpa animasi
         sw.style.transition = 'none';
-        sw.style.transform = `translateX(-${sliderIdx * 100}%)`;
-
-    } catch (e) { console.warn('Banner load error:', e.message); }
+        sw.style.transform  = `translateX(-${sliderIdx * 100}%)`;
+    } catch(e) { console.warn('Banner error:', e.message); }
 }
 
 function moveSliderSmooth(targetIdx) {
     if (isTransitioning || !sliderSlides.length) return;
     isTransitioning = true;
-    
-    const sw = document.getElementById('slider');
-    sliderIdx = targetIdx;
-
-    // Jalankan efek geser mulus
+    const sw    = document.getElementById('slider');
+    sliderIdx   = targetIdx;
     sw.style.transition = 'transform 0.5s ease-in-out';
-    sw.style.transform = `translateX(-${sliderIdx * 100}%)`;
-
+    sw.style.transform  = `translateX(-${sliderIdx * 100}%)`;
     updateDots();
 }
 
-function goToSlide(targetIdx) {
-    moveSliderSmooth(targetIdx);
-}
+function goToSlide(targetIdx) { moveSliderSmooth(targetIdx); }
 
 function updateDots() {
     let dotIdx = sliderIdx - 1;
-    if (sliderIdx === 0) dotIdx = sliderSlides.length - 1;
+    if (sliderIdx === 0)                    dotIdx = sliderSlides.length - 1;
     if (sliderIdx === sliderSlides.length + 1) dotIdx = 0;
-
-    document.querySelectorAll('.dot').forEach((d, i) => { 
-        d.className = 'dot' + (i === dotIdx ? ' active' : ''); 
+    document.querySelectorAll('.dot').forEach((d, i) => {
+        d.className = 'dot' + (i === dotIdx ? ' active' : '');
     });
 }
 
-// Efek sulap: Melompat instan tanpa animasi saat transisi klon selesai
 document.getElementById('slider').addEventListener('transitionend', () => {
     const sw = document.getElementById('slider');
     isTransitioning = false;
-
-    // Jika mentok di klon paling akhir, balikkan instan ke gambar asli pertama
     if (sliderIdx === sliderSlides.length + 1) {
-        sw.style.transition = 'none';
-        sliderIdx = 1;
-        sw.style.transform = `translateX(-${sliderIdx * 100}%)`;
+        sw.style.transition = 'none'; sliderIdx = 1;
+        sw.style.transform  = `translateX(-${sliderIdx * 100}%)`;
     }
-    
-    // Jika mentok di klon paling awal, balikkan instan ke gambar asli terakhir
     if (sliderIdx === 0) {
-        sw.style.transition = 'none';
-        sliderIdx = sliderSlides.length;
-        sw.style.transform = `translateX(-${sliderIdx * 100}%)`;
+        sw.style.transition = 'none'; sliderIdx = sliderSlides.length;
+        sw.style.transform  = `translateX(-${sliderIdx * 100}%)`;
     }
 });
 
 function initSliderControls() {
     document.getElementById('nextBtn').onclick = () => moveSliderSmooth(sliderIdx + 1);
     document.getElementById('prevBtn').onclick = () => moveSliderSmooth(sliderIdx - 1);
-    
-    // Geser otomatis setiap 3.5 detik ke arah kanan secara berkesinambungan
-    setInterval(() => {
-        moveSliderSmooth(sliderIdx + 1);
-    }, 3500);
+    setInterval(() => { moveSliderSmooth(sliderIdx + 1); }, 3500);
 }
 
+// ═══════════════════════════════════════════════════════
 // LOAD JADWAL
+// ═══════════════════════════════════════════════════════
 async function loadJadwal() {
     try {
         const { data, error } = await db.from('jadwal').select('*').order('created_at', { ascending: false });
@@ -597,70 +1256,85 @@ async function loadJadwal() {
         allSchedules = data || [];
         buildLeagueTabs();
         renderTable(allSchedules);
-    } catch (e) {
-        document.getElementById('scheduleBody').innerHTML = `<tr><td colspan="4" style="text-align:center;color:#fc8181;padding:20px;">Gagal memuat jadwal.</td></tr>`;
+    } catch {
+        document.getElementById('scheduleBody').innerHTML =
+            `<tr><td colspan="4" style="text-align:center;color:#fc8181;padding:20px;">Gagal memuat jadwal.</td></tr>`;
     }
 }
 
 function buildLeagueTabs() {
     const leagues = ['ALL', ...new Set(allSchedules.map(s => s.league).filter(Boolean))];
-    document.getElementById('tabFilter').innerHTML = leagues.map(l => `<button class="tab-btn${l === 'ALL' ? ' active' : ''}" onclick="filterLeague('${l}')">${l === 'ALL' ? 'SEMUA' : l}</button>`).join('');
+    document.getElementById('tabFilter').innerHTML = leagues.map(l =>
+        `<button class="tab-btn${l === 'ALL' ? ' active' : ''}" onclick="filterLeague('${l}')">${l === 'ALL' ? 'SEMUA' : l}</button>`
+    ).join('');
 }
 
 function filterLeague(league) {
-    document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.toggle('active', (league === 'ALL' && btn.textContent.trim() === 'SEMUA') || btn.textContent.trim() === league); });
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active',
+            (league === 'ALL' && btn.textContent.trim() === 'SEMUA') ||
+            btn.textContent.trim() === league
+        );
+    });
     renderTable(league === 'ALL' ? allSchedules : allSchedules.filter(s => s.league === league));
 }
 
 function renderTable(data) {
     const body = document.getElementById('scheduleBody');
-    if (!data.length) { body.innerHTML = `<tr><td colspan="4"><div class="state-msg">Tidak ada jadwal tersedia</div></td></tr>`; return; }
+    if (!data.length) {
+        body.innerHTML = `<tr><td colspan="4"><div class="state-msg">Tidak ada jadwal tersedia</div></td></tr>`;
+        return;
+    }
     body.innerHTML = data.map(s => {
-        // PERBAIKAN: Menggunakan Regex (/ vs /i) supaya fleksibel memecah 'vs', 'VS', atau 'Vs'
-        const parts = (s.match_name || '').split(/ vs /i);
-        const home = parts[0]?.trim() || s.match_name || '—';
-        const away = parts[1]?.trim() || '';
-        
-        const homeLogo = s.home_logo ? `<img src="${s.home_logo}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;vertical-align:middle;margin-right:4px;background:rgba(255,255,255,0.1);" onerror="this.style.display='none'">` : '';
-        const awayLogo = s.away_logo ? `<img src="${s.away_logo}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;vertical-align:middle;margin-left:4px;background:rgba(255,255,255,0.1);" onerror="this.style.display='none'">` : '';
-        
+        const parts    = (s.match_name || '').split(/ vs /i);
+        const home     = parts[0]?.trim() || s.match_name || '—';
+        const away     = parts[1]?.trim() || '';
+        const homeLogo = s.home_logo
+            ? `<img src="${s.home_logo}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;vertical-align:middle;margin-right:4px;background:rgba(255,255,255,0.1);" onerror="this.style.display='none'">`
+            : '';
+        const awayLogo = s.away_logo
+            ? `<img src="${s.away_logo}" style="width:22px;height:22px;object-fit:contain;border-radius:50%;vertical-align:middle;margin-left:4px;background:rgba(255,255,255,0.1);" onerror="this.style.display='none'">`
+            : '';
         return `<tr>
             <td style="white-space:nowrap;font-weight:700;color:#ffd700;">${s.time || '—'} WIB</td>
-            <td style="color:#ffd700; font-weight:bold;">${s.league || '—'}</td>
-            <td>${homeLogo}${home} ${away ? `<span style="color:#ffd700;font-weight:800;margin:0 4px;">vs</span> ${away}${awayLogo}` : ''}</td>
-            <td style="font-family:'Barlow Condensed'; font-weight:800; color:#ffd700;">${s.prob || '—'}</td>
+            <td style="color:#ffd700;font-weight:bold;">${s.league || '—'}</td>
+            <td>${homeLogo}${home}${away ? ` <span style="color:#ffd700;font-weight:800;margin:0 4px;">vs</span> ${away}${awayLogo}` : ''}</td>
+            <td style="font-family:'Barlow Condensed';font-weight:800;color:#ffd700;">${s.prob || '—'}</td>
         </tr>`;
     }).join('');
 }
+
+// ═══════════════════════════════════════════════════════
 // LOAD HASIL
+// ═══════════════════════════════════════════════════════
 async function loadHasil() {
     try {
         const { data, error } = await db.from('hasil').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         renderCards(data || []);
-    } catch (e) {
-        document.getElementById('matches').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#fc8181;padding:30px;">Gagal memuat hasil.</div>`;
+    } catch {
+        document.getElementById('matches').innerHTML =
+            `<div style="grid-column:1/-1;text-align:center;color:#fc8181;padding:30px;">Gagal memuat hasil.</div>`;
     }
 }
 
 function renderCards(data) {
     const container = document.getElementById('matches');
-    if (!data.length) { container.innerHTML = `<div style="grid-column:1/-1;"><div class="state-msg">Belum ada PREDIKSI SKOR AKURAT</div></div>`; return; }
+    if (!data.length) {
+        container.innerHTML = `<div style="grid-column:1/-1;"><div class="state-msg">Belum ada PREDIKSI SKOR AKURAT</div></div>`;
+        return;
+    }
     container.innerHTML = data.map(m => {
-        const homeLogo = m.home_logo ? `<img src="${m.home_logo}" onerror="this.replaceWith(createPlaceholder())">` : `<div class="team-logo-placeholder">⚽</div>`;
-        const awayLogo = m.away_logo ? `<img src="${m.away_logo}" onerror="this.replaceWith(createPlaceholder())">` : `<div class="team-logo-placeholder">⚽</div>`;
+        const homeLogo = m.home_logo
+            ? `<img src="${m.home_logo}" onerror="this.replaceWith(createPlaceholder())">`
+            : `<div class="team-logo-placeholder">⚽</div>`;
+        const awayLogo = m.away_logo
+            ? `<img src="${m.away_logo}" onerror="this.replaceWith(createPlaceholder())">`
+            : `<div class="team-logo-placeholder">⚽</div>`;
         const predText = `Prediksi ${m.home} vs ${m.away}: Skor ${m.score} — Analisa by RINJANI4D`;
-        
-        // Mengambil data waktu (mendukung nama kolom 'match_time' ataupun 'waktu')
-        const waktuPertandingan = m.match_time || m.waktu || '';
-
+        const waktu    = m.match_time || m.waktu || '';
         return `<div class="card">
-            <!-- Tampilan Tanggal & Waktu di Atas Logo Tim -->
-            ${waktuPertandingan ? `
-            <div class="match-time-display" style="color: #ffd700; font-size: 12px; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px; opacity: 0.9;">
-                 ${waktuPertandingan}
-            </div>` : ''}
-
+            ${waktu ? `<div style="color:#ffd700;font-size:12px;font-weight:700;margin-bottom:15px;letter-spacing:0.5px;opacity:0.9;">${waktu}</div>` : ''}
             <div class="teams">
                 <div class="team">${homeLogo}<p>${m.home || '—'}</p></div>
                 <div class="vs">VS</div>
@@ -673,37 +1347,48 @@ function renderCards(data) {
     }).join('');
 }
 
-function createPlaceholder() { const d = document.createElement('div'); d.className = 'team-logo-placeholder'; d.textContent = '⚽'; return d; }
-
-function copyMatch(text) {
-    navigator.clipboard.writeText(text).then(() => { alert('✅ Prediksi berhasil disalin!'); }).catch(() => {
-        const el = document.createElement('textarea'); el.value = text; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); alert('✅ Prediksi berhasil disalin!');
-    });
+function createPlaceholder() {
+    const d = document.createElement('div');
+    d.className   = 'team-logo-placeholder';
+    d.textContent = '⚽';
+    return d;
 }
 
+function copyMatch(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => alert('✅ Prediksi berhasil disalin!'))
+        .catch(() => {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('✅ Prediksi berhasil disalin!');
+        });
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
 async function init() {
-    await loadMarquee(); await loadBanner(); await loadJadwal(); await loadHasil(); initSliderControls();
+    await loadMarquee();
+    await loadBanner();
+    await loadJadwal();
+    await loadHasil();
+    initSliderControls();
 }
 document.addEventListener('DOMContentLoaded', init);
 
 // ═══════════════════════════════════════════════════════
-// KODE BARU: SUPABASE REALTIME CHANNEL LISTENER
+// REALTIME LISTENERS
 // ═══════════════════════════════════════════════════════
-
-// 1. Dengarkan perubahan data pada tabel 'jadwal'
 db.channel('realtime-jadwal')
-  .on('postgres_changes', { event: '*', schema: 'public', table: 'jadwal' }, (payload) => {
-      console.log('Ada pembaruan jadwal pertandingan:', payload);
-      loadJadwal(); // Memuat ulang tabel jadwal otomatis di layar depan
-  })
+  .on('postgres_changes', { event: '*', schema: 'public', table: 'jadwal' }, () => { loadJadwal(); })
   .subscribe();
 
-// 2. Dengarkan perubahan data pada tabel 'hasil'
 db.channel('realtime-hasil')
-  .on('postgres_changes', { event: '*', schema: 'public', table: 'hasil' }, (payload) => {
-      console.log('Ada pembaruan PREDIKSI SKOR AKURAT:', payload);
-      loadHasil(); // Memuat ulang kartu hasil otomatis di layar depan
-  })
+  .on('postgres_changes', { event: '*', schema: 'public', table: 'hasil' }, () => { loadHasil(); })
   .subscribe();
 </script>
 </body>
