@@ -184,6 +184,40 @@ header {
     margin-bottom: 30px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    /* Shadow edge kanan sebagai indikator bisa scroll */
+    background-image: linear-gradient(to right, #ffffff, #ffffff),
+                      linear-gradient(to right, #ffffff, #ffffff),
+                      linear-gradient(to right, rgba(0,0,0,0.08), transparent),
+                      linear-gradient(to left,  rgba(0,0,0,0.08), transparent);
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+    border-radius: 12px;
+}
+
+/* Teks petunjuk geser — hanya tampil di HP */
+.table-scroll-hint {
+    display: none;
+}
+@media (max-width: 768px) {
+    .table-scroll-hint {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #b8860b;
+        margin-bottom: 6px;
+        padding-left: 2px;
+        opacity: 0.8;
+    }
+}
 table { width: 100%; border-collapse: collapse; min-width: 600px; }
 th { background: rgba(255,215,0,0.15); color: #b8860b; padding: 15px; text-align: left; font-size: 13px; }
 td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 14px; color: #333333; }
@@ -710,30 +744,37 @@ tbody tr:hover { background: #fffbec; }
 
 <!-- ══ KONTEN UTAMA ══ -->
 <div id="main-content">
-
     <section class="schedule-section">
         <div class="section-title">ANALISA PELUANG (HOME | DRAW | AWAY)</div>
-
         <div class="tab-filter" id="tabFilter">
             <button class="tab-btn active" onclick="filterLeague('ALL')">SEMUA</button>
         </div>
 
+        <!-- [TAMBAHAN BARU] Teks petunjuk — hanya muncul di HP via CSS -->
+        <div class="table-scroll-hint">
+            <span>👆</span> Geser tabel ke samping
+        </div>
+
         <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Waktu</th>
-                        <th>Liga</th>
-                        <th>Pertandingan</th>
-                        <th>Win Prob (%)</th>
-                    </tr>
-                </thead>
-                <tbody id="scheduleBody">
-                    <tr><td colspan="4">
-                        <div class="state-msg"><span class="loader-ring"></span>Memuat jadwal...</div>
-                    </td></tr>
-                </tbody>
-            </table>
+            <!-- [TAMBAHAN BARU] Wrapper scroll dengan shadow edge -->
+            <div class="table-scroll-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Waktu</th>
+                            <th>Liga</th>
+                            <th>Pertandingan</th>
+                            <th>Win Prob (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <tr><td colspan="4">
+                            <div class="state-msg"><span class="loader-ring"></span>Memuat jadwal...</div>
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- [TUTUP] .table-scroll-wrapper -->
         </div>
 
         <!-- 3D Carousel -->
@@ -954,7 +995,9 @@ tbody tr:hover { background: #fffbec; }
 </div>
 
 
-<a href="https://rinjaniman.com" target="_blank" class="floating">MAIN SEKARANG</a>
+<!-- Start of  Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=8720d7b7-878f-4b82-a73d-a4331273e116"> </script>
+<!-- End of  Zendesk Widget script -->
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -984,10 +1027,6 @@ tbody tr:hover { background: #fffbec; }
 <!-- Ionicons — hanya ditambahkan sekali di sini, tidak duplikat -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-<!-- Start of  Zendesk Widget script -->
-<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=8720d7b7-878f-4b82-a73d-a4331273e116"> </script>
-<!-- End of  Zendesk Widget script -->
 
 
 <script>
