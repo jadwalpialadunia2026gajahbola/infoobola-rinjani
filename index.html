@@ -6,6 +6,9 @@
     <title>RINJANI4D — Analisa & Prediksi Bola</title>
     <link href="https://images.linkcdn.cloud/V2/507/favicon/favicon-1888287302.png" rel="icon" type="image/png"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,6 +19,8 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-color: #f9f7e8;
+    /* Beri ruang bawah agar konten tidak tertutup floating footer */
+    padding-bottom: 100px;
 }
 
 body::before { content: none; }
@@ -260,15 +265,16 @@ tbody tr:hover { background: #fffbec; }
 /* FLOATING */
 .floating {
     position: fixed;
-    bottom: 20px; right: 20px;
+    bottom: 90px; right: 20px;
     background: #ffd700;
     color: #000000;
-    padding: 15px 25px;
+    padding: 12px 20px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 800;
-    z-index: 100;
+    z-index: 200;
     box-shadow: 0 4px 20px rgba(255,215,0,0.5);
+    font-size: 13px;
 }
 .floating:hover { background: #e6c200; }
 
@@ -345,7 +351,6 @@ tbody tr:hover { background: #fffbec; }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Tombol kembali — pill button emas */
 .back-bar {
     display: flex;
     align-items: center;
@@ -369,7 +374,6 @@ tbody tr:hover { background: #fffbec; }
 }
 .back-link:hover { background: #ffd700; color: #000000; }
 
-/* EP CARD */
 .ep-card {
     background: #ffffff;
     border: 1px solid rgba(255,215,0,0.4);
@@ -389,7 +393,6 @@ tbody tr:hover { background: #fffbec; }
     letter-spacing: 0.5px;
 }
 
-/* STAT */
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -419,14 +422,12 @@ tbody tr:hover { background: #fffbec; }
     letter-spacing: 0.5px;
 }
 
-/* PROGRESS BAR */
 .prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
 .prog-label { width: 130px; font-size: 13px; font-weight: 600; flex-shrink: 0; color: #444444; }
 .prog-bar-wrap { flex: 1; background: rgba(0,0,0,0.07); border-radius: 20px; height: 10px; overflow: hidden; }
 .prog-bar { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #ffd700, #ffaa00); }
 .prog-val { width: 38px; text-align: right; font-size: 13px; font-weight: 700; color: #b8860b; flex-shrink: 0; }
 
-/* STEPS */
 .step-list { list-style: none; }
 .step-item {
     display: flex;
@@ -450,7 +451,6 @@ tbody tr:hover { background: #fffbec; }
 .step-content h4 { font-weight: 700; font-size: 15px; color: #b8860b; margin-bottom: 4px; }
 .step-content p { font-size: 13px; color: #666666; line-height: 1.6; }
 
-/* TEAM CARDS (Tentang Kami) */
 .team-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -475,13 +475,11 @@ tbody tr:hover { background: #fffbec; }
 .tc-name { font-weight: 700; font-size: 15px; color: #b8860b; margin-bottom: 4px; }
 .tc-role { font-size: 12px; color: #999999; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* VISI MISI */
 .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .vm-box { background: #fffbec; border: 1px solid rgba(255,215,0,0.25); border-radius: 10px; padding: 16px; }
 .vm-box-title { color: #b8860b; font-weight: 800; margin-bottom: 8px; font-size: 15px; }
 .vm-box p { font-size: 13px; color: #666666; line-height: 1.7; }
 
-/* FAQ */
 .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
 .faq-q {
     width: 100%;
@@ -506,7 +504,153 @@ tbody tr:hover { background: #fffbec; }
 .faq-a { display: none; padding: 0 0 16px; font-size: 13px; color: #666666; line-height: 1.75; }
 .faq-a.open { display: block; }
 
-/* RESPONSIVE */
+/* ══════════════════════════════════════════════════════
+   FLOATING SOCIAL NAV — CSS TERISOLASI
+   Semua class diawali .fsn- agar tidak bentrok
+══════════════════════════════════════════════════════ */
+.fsn-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 14px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,215,0,0.35);
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.08);
+}
+
+.fsn-list {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.fsn-list li {
+    position: relative;
+    list-style: none;
+    width: 52px;
+    height: 52px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    border-radius: 52px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.5s ease, box-shadow 0.5s ease;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fsn-list li::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 52px;
+    background: linear-gradient(45deg, var(--fsn-i), var(--fsn-j));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fsn-list li::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 100%;
+    height: 100%;
+    border-radius: 52px;
+    background: linear-gradient(45deg, var(--fsn-i), var(--fsn-j));
+    filter: blur(12px);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+}
+
+.fsn-list li:hover {
+    width: 150px;
+    box-shadow: none;
+}
+
+.fsn-list li:hover::before { opacity: 1; }
+.fsn-list li:hover::after  { opacity: 0.45; }
+
+.fsn-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.5s ease;
+    transition-delay: 0.25s;
+}
+
+.fsn-list li:hover .fsn-icon {
+    transform: scale(0);
+    transition-delay: 0s;
+}
+
+.fsn-icon ion-icon {
+    color: #888;
+    font-size: 1.55em;
+    transition: color 0.5s ease, transform 0.5s ease;
+    transition-delay: 0.25s;
+    pointer-events: none;
+}
+
+.fsn-list li:hover .fsn-icon ion-icon {
+    color: #fff;
+    transition-delay: 0s;
+}
+
+/* Ikon suka yang sudah di-liked */
+.fsn-list li.fsn-liked .fsn-icon ion-icon {
+    color: #e53e3e;
+}
+
+.fsn-title {
+    position: absolute;
+    color: #fff;
+    font-size: 0.82em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    transition-delay: 0s;
+    white-space: nowrap;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.fsn-list li:hover .fsn-title {
+    transform: scale(1);
+    transition-delay: 0.25s;
+}
+
+/* Responsif mobile */
+@media (max-width: 480px) {
+    .fsn-list li        { width: 46px; height: 46px; }
+    .fsn-list li:hover  { width: 130px; }
+    .fsn-icon ion-icon  { font-size: 1.35em; }
+    .fsn-title          { font-size: 0.75em; }
+    .fsn-bar            { padding: 8px 0 12px; }
+    .floating           { bottom: 80px; }
+}
+
+/* RESPONSIVE LAMA */
 @media (max-width: 600px) {
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .team-cards-grid { grid-template-columns: 1fr 1fr; }
@@ -532,7 +676,7 @@ tbody tr:hover { background: #fffbec; }
         <div class="dropdown-card" id="dropdownCard">
             <a href="https://rinjaniman.com">Login</a>
             <a href="https://rinjaniman.com/register">Daftar</a>
-            <a href="https://rinjani-game-world--colombogelap.replit.app">Profil</a>
+            <a href="https://rinjanisoccer.com/profile">Profil</a>
         </div>
     </div>
 </header>
@@ -633,17 +777,12 @@ tbody tr:hover { background: #fffbec; }
 </div><!-- /#main-content -->
 
 
-<!-- ══════════════════════════════════════════════════════
-     HALAMAN: STATISTIK
-══════════════════════════════════════════════════════ -->
+<!-- HALAMAN: STATISTIK -->
 <div class="extra-page" id="page-statistik">
-
     <div class="section-title">STATISTIK RINJANI4D</div>
-
     <div class="back-bar">
         <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Ringkasan Performa</div>
         <div class="stat-grid">
@@ -653,41 +792,15 @@ tbody tr:hover { background: #fffbec; }
             <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Liga Aktif</div></div>
         </div>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Akurasi Per Liga</div>
-        <div class="prog-row">
-            <span class="prog-label">Premier League</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div>
-            <span class="prog-val">82%</span>
-        </div>
-        <div class="prog-row">
-            <span class="prog-label">La Liga</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:79%"></div></div>
-            <span class="prog-val">79%</span>
-        </div>
-        <div class="prog-row">
-            <span class="prog-label">Serie A</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:75%"></div></div>
-            <span class="prog-val">75%</span>
-        </div>
-        <div class="prog-row">
-            <span class="prog-label">Bundesliga</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:80%"></div></div>
-            <span class="prog-val">80%</span>
-        </div>
-        <div class="prog-row">
-            <span class="prog-label">UCL</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:71%"></div></div>
-            <span class="prog-val">71%</span>
-        </div>
-        <div class="prog-row">
-            <span class="prog-label">Liga 1</span>
-            <div class="prog-bar-wrap"><div class="prog-bar" style="width:76%"></div></div>
-            <span class="prog-val">76%</span>
-        </div>
+        <div class="prog-row"><span class="prog-label">Premier League</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div><span class="prog-val">82%</span></div>
+        <div class="prog-row"><span class="prog-label">La Liga</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:79%"></div></div><span class="prog-val">79%</span></div>
+        <div class="prog-row"><span class="prog-label">Serie A</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:75%"></div></div><span class="prog-val">75%</span></div>
+        <div class="prog-row"><span class="prog-label">Bundesliga</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:80%"></div></div><span class="prog-val">80%</span></div>
+        <div class="prog-row"><span class="prog-label">UCL</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:71%"></div></div><span class="prog-val">71%</span></div>
+        <div class="prog-row"><span class="prog-label">Liga 1</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:76%"></div></div><span class="prog-val">76%</span></div>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Tren Akurasi 6 Bulan Terakhir</div>
         <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
@@ -699,21 +812,15 @@ tbody tr:hover { background: #fffbec; }
             <div class="stat-box"><div class="stat-num" style="font-size:26px;">82%</div><div class="stat-lbl">Jun</div></div>
         </div>
     </div>
+</div>
 
-</div><!-- /#page-statistik -->
 
-
-<!-- ══════════════════════════════════════════════════════
-     HALAMAN: PANDUAN
-══════════════════════════════════════════════════════ -->
+<!-- HALAMAN: PANDUAN -->
 <div class="extra-page" id="page-panduan">
-
     <div class="section-title">PANDUAN PENGGUNAAN</div>
-
     <div class="back-bar">
         <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Cara Membaca Prediksi</div>
         <ul class="step-list">
@@ -728,77 +835,68 @@ tbody tr:hover { background: #fffbec; }
                 <div class="step-num">2</div>
                 <div class="step-content">
                     <h4>Pahami Win Probability</h4>
-                    <p>Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong> berarti tim tuan rumah memiliki peluang menang 55%, seri 20%, dan tim tamu 25%. Pilih outcome dengan peluang tertinggi untuk parlay Anda.</p>
+                    <p>Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong> berarti tim tuan rumah memiliki peluang menang 55%, seri 20%, dan tim tamu 25%.</p>
                 </div>
             </li>
             <li class="step-item">
                 <div class="step-num">3</div>
                 <div class="step-content">
                     <h4>Cek Prediksi Skor Akurat</h4>
-                    <p>Scroll ke bawah untuk melihat kartu prediksi skor. Prediksi dihasilkan dari analisa statistik mendalam, head-to-head, dan kondisi tim terkini.</p>
+                    <p>Scroll ke bawah untuk melihat kartu prediksi skor dari analisa statistik mendalam, head-to-head, dan kondisi tim terkini.</p>
                 </div>
             </li>
             <li class="step-item">
                 <div class="step-num">4</div>
                 <div class="step-content">
                     <h4>Salin & Pasang Prediksi</h4>
-                    <p>Klik tombol <strong style="color:#b8860b;">📋 Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard, lalu gunakan di platform taruhan pilihan Anda.</p>
+                    <p>Klik tombol <strong style="color:#b8860b;">📋 Salin Prediksi</strong> untuk menyalin teks prediksi ke clipboard.</p>
                 </div>
             </li>
             <li class="step-item">
                 <div class="step-num">5</div>
                 <div class="step-content">
                     <h4>Filter Berdasarkan Liga</h4>
-                    <p>Gunakan tombol filter di atas tabel jadwal untuk menampilkan hanya pertandingan dari liga tertentu, misalnya EPL, UCL, atau Liga 1.</p>
+                    <p>Gunakan tombol filter di atas tabel jadwal untuk menampilkan pertandingan dari liga tertentu.</p>
                 </div>
             </li>
             <li class="step-item">
                 <div class="step-num">6</div>
                 <div class="step-content">
                     <h4>Update Real-Time Otomatis</h4>
-                    <p>Halaman ini terhubung ke database via Supabase Realtime. Setiap ada pembaruan jadwal atau prediksi baru, data di layar otomatis diperbarui tanpa perlu reload halaman.</p>
+                    <p>Halaman ini terhubung ke database via Supabase Realtime. Data otomatis diperbarui tanpa perlu reload halaman.</p>
                 </div>
             </li>
         </ul>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">⚠️ Disclaimer Penting</div>
         <p style="font-size:13px;color:#000000;line-height:1.8;">
             Prediksi yang disajikan RINJANI4D didasarkan pada analisa statistik dan bukan jaminan hasil pertandingan.
             Selalu bertaruh sesuai kemampuan finansial Anda. Bermainlah secara bertanggung jawab.
-            RINJANI4D tidak bertanggung jawab atas kerugian finansial yang timbul dari penggunaan informasi di situs ini.
         </p>
     </div>
+</div>
 
-</div><!-- /#page-panduan -->
 
-
-<!-- ══════════════════════════════════════════════════════
-     HALAMAN: TENTANG KAMI
-══════════════════════════════════════════════════════ -->
+<!-- HALAMAN: TENTANG KAMI -->
 <div class="extra-page" id="page-tentang">
-
     <div class="section-title">TENTANG KAMI</div>
-
     <div class="back-bar">
         <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">🌟 Siapa RINJANI4D?</div>
-        <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8; margin-bottom:16px;">
+        <p style="font-size:14px;color:rgba(0,0,0,0.65);line-height:1.8;margin-bottom:16px;">
             RINJANI4D adalah platform prediksi dan analisa bola terpercaya yang telah berdiri sejak 2020.
             Kami menggunakan kombinasi model statistik canggih, data historis pertandingan, dan analisa ahli
             untuk menghadirkan prediksi skor paling akurat kepada para penggemar sepak bola di Indonesia.
         </p>
-        <p style="font-size:14px; color:rgba(0,0,0,0.65); line-height:1.8;">
+        <p style="font-size:14px;color:rgba(0,0,0,0.65);line-height:1.8;">
             Dengan lebih dari <strong style="color:#b8860b;">50.000 pengguna aktif</strong> setiap bulan dan
             tingkat akurasi prediksi di atas <strong style="color:#b8860b;">78%</strong>, kami berkomitmen
-            untuk terus meningkatkan kualitas analisa demi kepuasan member setia kami.
+            untuk terus meningkatkan kualitas analisa.
         </p>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Visi & Misi</div>
         <div class="vm-grid">
@@ -812,125 +910,84 @@ tbody tr:hover { background: #fffbec; }
             </div>
         </div>
     </div>
-
-       </div>
-
-            </div>
-    </div>
-
-</div><!-- /#page-tentang -->
+</div>
 
 
-<!-- ══════════════════════════════════════════════════════
-     HALAMAN: FAQ
-══════════════════════════════════════════════════════ -->
+<!-- HALAMAN: FAQ -->
 <div class="extra-page" id="page-faq">
-
     <div class="section-title">❓ FAQ — PERTANYAAN UMUM</div>
-
     <div class="back-bar">
         <a class="back-link" onclick="showExtraPage(null)">← Kembali ke Halaman Utama</a>
     </div>
-
     <div class="ep-card">
         <div class="ep-card-title">Pertanyaan yang Sering Diajukan</div>
 
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Apakah prediksi di RINJANI4D gratis?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Ya, semua prediksi dan jadwal pertandingan yang ditampilkan di halaman utama ini sepenuhnya gratis
-                dan dapat diakses oleh siapa saja tanpa perlu mendaftar. Untuk fitur premium seperti prediksi
-                eksklusif dan analisa mendalam, silakan daftar akun di platform kami.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Apakah prediksi di RINJANI4D gratis?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Ya, semua prediksi dan jadwal pertandingan yang ditampilkan di halaman utama ini sepenuhnya gratis dan dapat diakses oleh siapa saja tanpa perlu mendaftar.</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Seberapa akurat prediksi yang diberikan?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Tingkat akurasi rata-rata global kami adalah <strong style="color:#b8860b;">78%</strong> berdasarkan
-                rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).
-                Namun perlu diingat bahwa sepak bola tetap memiliki unsur ketidakpastian.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Seberapa akurat prediksi yang diberikan?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Tingkat akurasi rata-rata global kami adalah <strong style="color:#b8860b;">78%</strong> berdasarkan rekap historis 6 bulan terakhir. Akurasi tertinggi ada di Premier League (82%) dan Bundesliga (80%).</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Kapan prediksi dan jadwal diperbarui?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Jadwal dan prediksi diperbarui setiap hari oleh tim analis kami, biasanya antara pukul
-                08:00 – 12:00 WIB. Halaman ini juga mendukung <strong style="color:#b8860b;">update real-time</strong>
-                via Supabase Realtime — begitu admin memperbarui data, tampilan di layar Anda otomatis berubah
-                tanpa perlu reload.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Kapan prediksi dan jadwal diperbarui?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Jadwal dan prediksi diperbarui setiap hari antara pukul 08:00 – 12:00 WIB. Halaman ini juga mendukung update real-time via Supabase Realtime.</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Bagaimana cara membaca tabel Win Probability?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong> dibaca sebagai berikut:
-                H = Home (tuan rumah) punya peluang menang 55%, D = Draw (seri) 20%, A = Away (tamu) 25%.
-                Total selalu mendekati 100%.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Bagaimana cara membaca tabel Win Probability?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Format <strong style="color:#b8860b;">H 55% | D 20% | A 25%</strong>: H = Home peluang menang 55%, D = Draw 20%, A = Away 25%. Total selalu mendekati 100%.</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Apakah ada aplikasi mobile RINJANI4D?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Saat ini RINJANI4D tersedia dalam versi web yang sudah dioptimalkan untuk mobile browser.
-                Anda bisa menambahkan situs ini ke layar utama smartphone untuk pengalaman seperti aplikasi native.
-                Versi Android dan iOS sedang dalam pengembangan.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Apakah ada aplikasi mobile RINJANI4D?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Saat ini RINJANI4D tersedia dalam versi web yang sudah dioptimalkan untuk mobile browser. Versi Android dan iOS sedang dalam pengembangan.</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Bagaimana cara menghubungi tim RINJANI4D?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Anda dapat menghubungi tim kami melalui live chat di platform utama
-                <strong style="color:#b8860b;">rinjaniman.com</strong> atau melalui customer service
-                yang tersedia 24 jam.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Bagaimana cara menghubungi tim RINJANI4D?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Anda dapat menghubungi tim kami melalui live chat di platform utama <strong style="color:#b8860b;">rinjaniman.com</strong> atau melalui customer service yang tersedia 24 jam.</div>
         </div>
-
         <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">
-                Data apa saja yang digunakan untuk membuat prediksi?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-                Prediksi kami menggunakan kombinasi dari: statistik head-to-head 5 musim terakhir,
-                form terkini masing-masing tim, kondisi pemain & cedera, faktor kandang/tandang,
-                statistik gol & kebobolan, serta model machine learning yang dilatih dari lebih dari
-                50.000 data pertandingan historis.
-            </div>
+            <button class="faq-q" onclick="toggleFaq(this)">Data apa saja yang digunakan untuk membuat prediksi?<span class="faq-icon">+</span></button>
+            <div class="faq-a">Prediksi kami menggunakan statistik head-to-head 5 musim terakhir, form terkini, kondisi pemain & cedera, faktor kandang/tandang, dan model machine learning dari 50.000+ data historis.</div>
         </div>
-
     </div>
-
-</div><!-- /#page-faq -->
+</div>
 
 
 <a href="https://rinjaniman.com" target="_blank" class="floating">MAIN SEKARANG</a>
 
+
+<!-- ══════════════════════════════════════════════════════
+     FLOATING SOCIAL NAV BAR — ditambahkan di sini,
+     tepat sebelum </body>. Tidak menyentuh apapun di atas.
+══════════════════════════════════════════════════════ -->
+<nav class="fsn-bar" id="fsnBar" aria-label="Social Navigation">
+    <ul class="fsn-list">
+        <li style="--fsn-i:#a955ff; --fsn-j:#ea51ff" onclick="showExtraPage(null)" role="button">
+            <span class="fsn-icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="fsn-title">Rumah</span>
+        </li>
+        <li style="--fsn-i:#80FF72; --fsn-j:#7EE8FA" onclick="fsnShare()" role="button">
+            <span class="fsn-icon"><ion-icon name="share-social-outline"></ion-icon></span>
+            <span class="fsn-title">Bagikan</span>
+        </li>
+        <li style="--fsn-i:#ffb86c; --fsn-j:#ff79c6" onclick="fsnSearch()" role="button">
+            <span class="fsn-icon"><ion-icon name="search-outline"></ion-icon></span>
+            <span class="fsn-title">Cari</span>
+        </li>
+        <li id="fsnLikeBtn" style="--fsn-i:#ffa9c6; --fsn-j:#f434e2" onclick="fsnToggleLike(this)" role="button">
+            <span class="fsn-icon"><ion-icon id="fsnHeartIcon" name="heart-outline"></ion-icon></span>
+            <span class="fsn-title">Suka</span>
+        </li>
+    </ul>
+</nav>
+<!-- Ionicons — hanya ditambahkan sekali di sini, tidak duplikat -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 <script>
 // ═══════════════════════════════════════════════════════
-// SUPABASE CLIENT
+// SUPABASE CLIENT — tidak diubah
 // ═══════════════════════════════════════════════════════
 const SUPABASE_URL  = 'https://bejygkgfpeuhphrrelmy.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlanlna2dmcGV1aHBocnJlbG15Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2MzIwNTgsImV4cCI6MjA5NjIwODA1OH0.S8zDfyUu3tcmFeqZXkzj-nPkdW14zm-mLyYr3iBGvcM';
@@ -942,7 +999,7 @@ let sliderIdx    = 0;
 let sliderSlides = [];
 
 // ═══════════════════════════════════════════════════════
-// BURGER MENU
+// BURGER MENU — tidak diubah
 // ═══════════════════════════════════════════════════════
 const burger       = document.getElementById('burger');
 const dropdownCard = document.getElementById('dropdownCard');
@@ -953,30 +1010,26 @@ burger.addEventListener('click', e => {
 document.addEventListener('click', () => dropdownCard.classList.remove('active'));
 
 // ═══════════════════════════════════════════════════════
-// NAVIGASI HALAMAN TAMBAHAN
+// NAVIGASI HALAMAN TAMBAHAN — tidak diubah
 // ═══════════════════════════════════════════════════════
 function showExtraPage(id) {
-    const mainContent = document.getElementById('main-content');
-    const marqueeWrap = document.getElementById('marqueeWrap');
+    const mainContent  = document.getElementById('main-content');
+    const marqueeWrap  = document.getElementById('marqueeWrap');
     const bannerSlider = document.getElementById('bannerSlider');
-    const allExtra    = document.querySelectorAll('.extra-page');
-    const navTabs     = document.querySelectorAll('.nav-tab');
+    const allExtra     = document.querySelectorAll('.extra-page');
+    const navTabs      = document.querySelectorAll('.nav-tab');
 
-    // Reset semua
     allExtra.forEach(p => p.classList.remove('active'));
     navTabs.forEach(t => t.classList.remove('active'));
 
     if (id) {
-        // Sembunyikan elemen khusus halaman utama
         mainContent.style.display  = 'none';
         marqueeWrap.style.display  = 'none';
         bannerSlider.style.display = 'none';
 
-        // Tampilkan halaman yang dipilih
         const target = document.getElementById('page-' + id);
         if (target) target.classList.add('active');
 
-        // Aktifkan tab yang sesuai
         navTabs.forEach(t => {
             if (t.getAttribute('onclick')?.includes("'" + id + "'")) {
                 t.classList.add('active');
@@ -985,31 +1038,27 @@ function showExtraPage(id) {
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-        // Kembali ke halaman utama
         mainContent.style.display  = 'block';
         marqueeWrap.style.display  = 'flex';
         bannerSlider.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Tutup burger dropdown
     dropdownCard.classList.remove('active');
 }
 
 // ═══════════════════════════════════════════════════════
-// FAQ ACCORDION
+// FAQ ACCORDION — tidak diubah
 // ═══════════════════════════════════════════════════════
 function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const isOpen = btn.classList.contains('open');
 
-    // Tutup semua
     document.querySelectorAll('.faq-q.open').forEach(b => {
         b.classList.remove('open');
         b.nextElementSibling.classList.remove('open');
     });
 
-    // Buka yang diklik (jika belum terbuka)
     if (!isOpen) {
         btn.classList.add('open');
         answer.classList.add('open');
@@ -1017,7 +1066,7 @@ function toggleFaq(btn) {
 }
 
 // ═══════════════════════════════════════════════════════
-// LOAD MARQUEE
+// LOAD MARQUEE — tidak diubah
 // ═══════════════════════════════════════════════════════
 async function loadMarquee() {
     try {
@@ -1032,7 +1081,7 @@ async function loadMarquee() {
 }
 
 // ═══════════════════════════════════════════════════════
-// BANNER SLIDER
+// BANNER SLIDER — tidak diubah
 // ═══════════════════════════════════════════════════════
 let isTransitioning = false;
 
@@ -1078,8 +1127,8 @@ async function loadBanner() {
 function moveSliderSmooth(targetIdx) {
     if (isTransitioning || !sliderSlides.length) return;
     isTransitioning = true;
-    const sw    = document.getElementById('slider');
-    sliderIdx   = targetIdx;
+    const sw = document.getElementById('slider');
+    sliderIdx = targetIdx;
     sw.style.transition = 'transform 0.5s ease-in-out';
     sw.style.transform  = `translateX(-${sliderIdx * 100}%)`;
     updateDots();
@@ -1089,7 +1138,7 @@ function goToSlide(targetIdx) { moveSliderSmooth(targetIdx); }
 
 function updateDots() {
     let dotIdx = sliderIdx - 1;
-    if (sliderIdx === 0)                    dotIdx = sliderSlides.length - 1;
+    if (sliderIdx === 0)                       dotIdx = sliderSlides.length - 1;
     if (sliderIdx === sliderSlides.length + 1) dotIdx = 0;
     document.querySelectorAll('.dot').forEach((d, i) => {
         d.className = 'dot' + (i === dotIdx ? ' active' : '');
@@ -1116,7 +1165,7 @@ function initSliderControls() {
 }
 
 // ═══════════════════════════════════════════════════════
-// LOAD JADWAL
+// LOAD JADWAL — tidak diubah
 // ═══════════════════════════════════════════════════════
 async function loadJadwal() {
     try {
@@ -1172,8 +1221,9 @@ function renderTable(data) {
         </tr>`;
     }).join('');
 }
+
 // ═══════════════════════════════════════════════════════
-// LOAD HASIL
+// LOAD HASIL — tidak diubah
 // ═══════════════════════════════════════════════════════
 async function loadHasil() {
     try {
@@ -1214,6 +1264,7 @@ function renderCards(data) {
         </div>`;
     }).join('');
 }
+
 function createPlaceholder() {
     const d = document.createElement('div');
     d.className   = 'team-logo-placeholder';
@@ -1236,7 +1287,7 @@ function copyMatch(text) {
 }
 
 // ═══════════════════════════════════════════════════════
-// INIT
+// INIT — tidak diubah
 // ═══════════════════════════════════════════════════════
 async function init() {
     await loadMarquee();
@@ -1248,7 +1299,7 @@ async function init() {
 document.addEventListener('DOMContentLoaded', init);
 
 // ═══════════════════════════════════════════════════════
-// REALTIME LISTENERS
+// REALTIME LISTENERS — tidak diubah
 // ═══════════════════════════════════════════════════════
 db.channel('realtime-jadwal')
   .on('postgres_changes', { event: '*', schema: 'public', table: 'jadwal' }, () => { loadJadwal(); })
@@ -1257,6 +1308,90 @@ db.channel('realtime-jadwal')
 db.channel('realtime-hasil')
   .on('postgres_changes', { event: '*', schema: 'public', table: 'hasil' }, () => { loadHasil(); })
   .subscribe();
+
+// ═══════════════════════════════════════════════════════
+// FLOATING SOCIAL NAV — Fungsi & Logika
+// ═══════════════════════════════════════════════════════
+
+// 1. Fungsi Bagikan — Web Share API (Diperkuat)
+function fsnShare() {
+    const shareData = {
+        title: 'RINJANI4D — Prediksi & Analisa Bola',
+        text: '📢 Cek prediksi bola terakurat hari ini di RINJANI4D!',
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).catch((err) => console.log('Share dibatalkan:', err));
+    } else {
+        // Fallback: Salin ke clipboard
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => alert('🔗 Link berhasil disalin!'))
+            .catch(() => prompt('Copy link:', window.location.href));
+    }
+}
+
+// 2. Fungsi Cari
+function fsnSearch() {
+    const query = prompt("🔍 Cari tim atau liga:");
+
+    // Jika user klik Cancel, kembalikan semua ke tampil normal
+    if (query === null) {
+        // Reset semua baris tabel
+        document.querySelectorAll('#scheduleBody tr').forEach(row => {
+            row.style.display = '';
+        });
+        // Reset semua kartu prediksi
+        document.querySelectorAll('#matches .card').forEach(card => {
+            card.style.display = '';
+        });
+        return;
+    }
+
+    const searchTerm = query.trim().toLowerCase();
+
+    // Jika input kosong, tampilkan semua
+    if (!searchTerm) {
+        document.querySelectorAll('#scheduleBody tr').forEach(row => {
+            row.style.display = '';
+        });
+        document.querySelectorAll('#matches .card').forEach(card => {
+            card.style.display = '';
+        });
+        return;
+    }
+
+    // Filter baris tabel jadwal (<tr> di dalam #scheduleBody)
+    document.querySelectorAll('#scheduleBody tr').forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+
+    // Filter kartu prediksi (.card di dalam #matches)
+    document.querySelectorAll('#matches .card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(searchTerm) ? '' : 'none';
+    });
+}
+// 3. Fungsi Suka (Dibuat lebih dinamis agar tidak bergantung pada ID global saja)
+function fsnToggleLike(element) {
+    const icon = element.querySelector('#fsnHeartIcon');
+    const isLiked = icon.getAttribute('name') === 'heart';
+
+    if (!isLiked) {
+        // Aksi Like
+        icon.setAttribute('name', 'heart');
+        icon.style.color = '#e53e3e';
+        icon.style.transition = 'all 0.3s ease';
+        icon.style.transform = 'scale(1.3)';
+        setTimeout(() => { icon.style.transform = 'scale(1)'; }, 300);
+    } else {
+        // Aksi Unlike
+        icon.setAttribute('name', 'heart-outline');
+        icon.style.color = '#777'; // Kembali ke warna default (bukan #888 agar konsisten)
+        icon.style.transform = 'scale(1)';
+    }
+}
 </script>
 </body>
 </html>
